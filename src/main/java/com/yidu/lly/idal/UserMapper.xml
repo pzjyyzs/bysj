@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yidu.lly.mapper.UserMapper" >
+  <select id="selectUser" parameterType="com.yidu.lly.model.User" resultType="com.yidu.lly.model.User">
+  	select * from user where username=#{username} and password=#{password}
+  </select>
+  
+  <insert id="insertUser" parameterType="com.yidu.lly.model.User">
+  	insert into user(uid,username,password,sex,img,userintroduce)
+  		values(#{uid},#{username},#{password},#{sex},#{img},#{userintroduce})
+  </insert>
+  <select id="selectUserName" parameterType="com.yidu.lly.model.User" resultType="com.yidu.lly.model.User">
+  	select * from user where username=#{username}
+  </select>
+  </mapper>
