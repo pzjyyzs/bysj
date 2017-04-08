@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  <body>
 		<div class="sign">
 			<div class="logo">
-				<a href="/"><img src="//cdn-qn0.jianshu.io/assets/web/logo-58fd04f6f0de908401aa561cda6a0688.png" alt="Logo"></a>
+				<a href="/"><img src="img/logo-yd.png" alt="Logo"></a>
 			</div>
 			<div class="main">
 				<div class="kuang">
