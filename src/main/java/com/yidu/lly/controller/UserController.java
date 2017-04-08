@@ -37,13 +37,12 @@ public class UserController {
 		userLogin.setUsername(request.getParameter("username"));
 		userLogin.setPassword(request.getParameter("password"));
 		
-		 User user=new User();
+	
 
 		if(this.userService.selectUser(userLogin)!=null){
 		  userLogin=this.userService.selectUser(userLogin);
-          System.out.println(user.toString()+"get user success");
+     
           session.setAttribute("user", userLogin);
-          
       		return "index";
 		}else{
 			System.out.println("can not get user");
@@ -52,6 +51,7 @@ public class UserController {
 		}
 	      
 	}
+	
 	
 	@RequestMapping(value="/register.do",method= RequestMethod.POST)
 	public String registerIndex(HttpServletRequest request,HttpSession session){
@@ -68,6 +68,7 @@ public class UserController {
 		session.setAttribute("user", userRegister);
 		return "index";
 	}
+	
 	@RequestMapping(value="/findRegister.do",method=RequestMethod.POST)
 	public @ResponseBody Map<String,Object> findRegisterUserName(HttpServletRequest request,HttpServletResponse response){
 		 String name=request.getParameter("registerUsername");
@@ -83,6 +84,22 @@ public class UserController {
 		 }
 		 return map;
 		 
+	}
+	
+	@RequestMapping(value="/showmyuser.do", method = RequestMethod.GET)
+	public String Tomyuser(HttpServletRequest request,HttpSession session){
+      		return "indexuser";
+	}
+	
+
+	@RequestMapping(value="/updateMyUser.do", method = RequestMethod.POST)
+	public String updateMyUser(HttpServletRequest request,HttpSession session){
+	         User userUpdate=(User) session.getAttribute("user");
+		String myintr=request.getParameter("myintr");
+		userUpdate.setUserintroduce(myintr);
+		this.userService.updateUser(userUpdate);
+		session.setAttribute("user", userUpdate);
+      		return "indexuser";
 	}
 	
 }

@@ -18,12 +18,24 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return this.userDao.selectUser(user);
 	}
+	
+	@Override
+	public User selectUser(String name) {
+		// TODO Auto-generated method stub
+		return this.userDao.selectmyUser(name);
+	}
+	
 
 	@Override
 	public void insertUser(User user) {
 		// TODO Auto-generated method stub
 		this.userDao.insertUser(user);
 	}
+	
+	@Override
+	public void updateUser(User user){
+		this.userDao.updateUser(user);
+	};
 
 	@Override
 	public boolean selectUserName(User user) {
@@ -33,7 +45,8 @@ public class UserServiceImpl implements UserService{
 		}
 		return false;
 	}
-	
+
+
 	
 
 }

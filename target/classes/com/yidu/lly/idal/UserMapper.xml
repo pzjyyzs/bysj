@@ -5,6 +5,14 @@
   	select * from user where username=#{username} and password=#{password}
   </select>
   
+   <select id="selectmyUser" parameterType="String" resultType="com.yidu.lly.model.User">
+  	select * from user where username=#{username} 
+  </select>
+  
+  <update id="updateUser" parameterType="com.yidu.lly.model.User" >
+ update user set userintroduce=#{userintroduce} where username=#{username} and password=#{password}
+</update>
+  
   <insert id="insertUser" parameterType="com.yidu.lly.model.User">
   	insert into user(uid,username,password,sex,img,userintroduce)
   		values(#{uid},#{username},#{password},#{sex},#{img},#{userintroduce})

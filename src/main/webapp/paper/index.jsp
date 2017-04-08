@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</a>
 				<div class="user">
 					<div class="avatar">
-						<a href="/">
+						<a href="user/showmyuser.do">
 							<img src="">
 						</a>
 					</div>
@@ -51,8 +51,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav">
 							<li>
-								<a href="/">
-									<span>关注</span>
+								<a href="friend/showmyfriend.do">
+									<span>读友圈</span>
 								</a>
 							</li>
 							<li class="notification">
