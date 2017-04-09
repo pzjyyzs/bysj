@@ -74,8 +74,10 @@ function UpdateHtml(){
   </head>
   
   <body>
-    姓名：${user.username }<br>
-    性别：${user.sex }<br>
+    姓名：${user.username}<br>
+    性别：${user.sex}<br>
+    关注：${myfriend}<br>
+    粉丝：${myfans}<br>
    头像：	<div class="">
    	 <img src=" ${user.img }">
 		<a href="user/">更改头像</a>

@@ -9,16 +9,31 @@
                 <result property="fname" column="fname"/>  
         </resultMap>  
   <select id="selectFriend" parameterType="com.yidu.lly.model.User" resultMap="friendList">
+  	select * from friend where fname=#{username} 
+  </select>
+  
+   <select id="selectMyFans" parameterType="com.yidu.lly.model.User" resultMap="friendList">
   	select * from friend where mname=#{username} 
   </select>
   
-  <update id="updateFriend" parameterType="com.yidu.lly.model.Friend" >
- update user set userintroduce=#{userintroduce} where username=#{username} and password=#{password}
-</update>
+  <delete id="delFriend" parameterType="com.yidu.lly.model.Friend">  
+  delete from friend where mname=#{mname} and fname=#{fname}
+      
+</delete> 
+  
+  
+ <select id="selectmyFriend" parameterType="com.yidu.lly.model.Friend" resultType="com.yidu.lly.model.Friend">
+  	select * from friend where mname=#{mname} and fname=#{fname}
+  </select>
   
   <insert id="insertFriend" parameterType="com.yidu.lly.model.Friend">
-  	insert into user(uid,username,password,sex,img,userintroduce)
-  		values(#{uid},#{username},#{password},#{sex},#{img},#{userintroduce})
+  	insert into friend(mname,fname)
+  		values(#{mname},#{fname})
   </insert>
+  
+  
+ <update id="updateFriend" parameterType="com.yidu.lly.model.Friend" >
+ update user set user introduce=#{userintroduce} where username=#{username} and password=#{password}
+</update>
 
   </mapper>

@@ -1,6 +1,7 @@
 package com.yidu.lly.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yidu.lly.model.Friend;
 import com.yidu.lly.model.User;
+import com.yidu.lly.service.FriendService;
 import com.yidu.lly.service.UserService;
 
 @Controller
@@ -30,6 +33,18 @@ public class UserController {
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
+	
+	@Resource(name="FriendServiceImpl")
+	private FriendService friendService;
+	
+	public FriendService getFriendService() {
+		return friendService;
+	}
+
+	public void setFriendService(FriendService friendService) {
+		this.friendService = friendService;
+	}
+	
 	
 	@RequestMapping(value="/showuser.do", method = RequestMethod.POST)
 	public String toIndex(HttpServletRequest request,HttpSession session){
@@ -52,7 +67,7 @@ public class UserController {
 	      
 	}
 	
-	
+	//注册
 	@RequestMapping(value="/register.do",method= RequestMethod.POST)
 	public String registerIndex(HttpServletRequest request,HttpSession session){
 		
@@ -86,12 +101,34 @@ public class UserController {
 		 
 	}
 	
+	//我的个人主页
 	@RequestMapping(value="/showmyuser.do", method = RequestMethod.GET)
 	public String Tomyuser(HttpServletRequest request,HttpSession session){
+		    
+		  User user=(User)session.getAttribute("user");
+		   String UserName=user.getUsername();
+		   
+		   List<Friend> Friendlist1 =this.friendService.selectFriend(user);//查我所关注的人
+		   int myfriend=0;//我所关注的人数
+		   for (Friend friend : Friendlist1) {    
+			   myfriend=myfriend+1;
+			}  
+		   
+		   
+		   List<Friend> Friendlist2 =this.friendService.selectMyFans(user);//查我的粉丝
+		   int myfans=0;//我的粉丝数
+		   for (Friend friend : Friendlist2) {    
+			   myfans=myfans+1;
+			}  
+		   
+		   session.setAttribute("myfriend",myfriend);
+		   session.setAttribute("myfans",myfans);
+		   
+		   
       		return "indexuser";
 	}
 	
-
+//编辑我的自我介绍
 	@RequestMapping(value="/updateMyUser.do", method = RequestMethod.POST)
 	public String updateMyUser(HttpServletRequest request,HttpSession session){
 	         User userUpdate=(User) session.getAttribute("user");
@@ -101,5 +138,58 @@ public class UserController {
 		session.setAttribute("user", userUpdate);
       		return "indexuser";
 	}
+	
+	//显示其他用户的个人主页
+	@RequestMapping(value="/showOtheruser.do", method = RequestMethod.GET)
+	public String ToOtherUser(HttpServletRequest request,HttpSession session){
+		
+		        String str=request.getParameter("userid");
+			    int userid = Integer.parseInt(str);
+			    
+			    User OtherUser=this.userService.selectUser(userid);
+			    session.setAttribute("OtherUser", OtherUser);
+			    
+			    //统计关注人数和粉丝；
+			    
+			    List<Friend> Friendlist1 =this.friendService.selectFriend(OtherUser);//查所关注的人
+				   int hisfriend=0;//我关注的人数
+				   for (Friend friend : Friendlist1) {    
+					   hisfriend=hisfriend+1;
+					}  
+				   
+				   
+				   List<Friend> Friendlist2 =this.friendService.selectMyFans(OtherUser);//查粉丝
+				   int hisfans=0;//粉丝数
+				   for (Friend friend : Friendlist2) {    
+					   hisfans=hisfans+1;
+					}  
+				   
+				   session.setAttribute("hisfriend",hisfriend);
+				   session.setAttribute("hisfans",hisfans);
+
+				   //判断是否隐藏关注按钮
+				   User user=(User)session.getAttribute("user");
+				    String MyName=user.getUsername();
+				    String friendName=OtherUser.getUsername();
+				    
+				  
+					Friend myfriend=new Friend();
+					myfriend.setMname(friendName);
+					myfriend.setFname(MyName);
+					String str1="";
+					String str2="";
+					if(this.friendService.selectmyFriend(myfriend)!=null){
+						str1="display:none";
+						str2="";
+						}else{
+						str1="";
+						str2="display:none";
+						}
+					session.setAttribute("str1", str1);
+					session.setAttribute("str2", str2);
+					
+					return "OtherIndexUser";
+	}
+	
 	
 }

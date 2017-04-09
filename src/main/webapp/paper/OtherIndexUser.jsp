@@ -74,15 +74,20 @@ function UpdateHtml(){
   </head>
   
   <body>
-    姓名：${user.username }<br>
-    性别：${user.sex }<br>
-   头像：	<div class="">
-   	 <img src=" ${user.img }">
-		<a href="user/">更改头像</a>
-			</div>
-			<br>
-    自我介绍：${user.userintroduce}<br>
-编辑自我介绍：<input type="button" class='update' vlaue="编辑" onclick="UpdateHtml()"/><br>			
+  
+  姓名：${OtherUser.username}<br>
+    性别：${OtherUser.sex}<br>
+     关注：${hisfriend}<br>
+     粉丝：${hisfans}<br>
+   头像：<div class=""><img src=" ${OtherUser.img}">
+                 <span id="" style="${str1}"><a href="friend/addfriend.do?username=${OtherUser.username}&userid=${OtherUser.uid}">关注</a></span>
+                 <span id="" style="${str2}"><a href="friend/delfriend.do?username=${OtherUser.username}&userid=${OtherUser.uid}">取消关注</a></span>
+                 <span><a href="user/">发私信</a></span>
+                 
+   
+   </div><br>
+    自我介绍：${OtherUser.userintroduce}<br>		
+  </body>		
   </body>
 
 </html>

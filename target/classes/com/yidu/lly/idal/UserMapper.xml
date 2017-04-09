@@ -9,6 +9,10 @@
   	select * from user where username=#{username} 
   </select>
   
+  <select id="selectUserToid" parameterType="int" resultType="com.yidu.lly.model.User">
+  	select * from user where uid=#{userid} 
+  </select>
+  
   <update id="updateUser" parameterType="com.yidu.lly.model.User" >
  update user set userintroduce=#{userintroduce} where username=#{username} and password=#{password}
 </update>

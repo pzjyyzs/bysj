@@ -33,7 +33,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-   		${user.userintroduce}	
+  ${user.username}的读友圈：<br>
+         已关注:<br>
+  <br>
+<c:forEach var="userlist" items="${userlist}">
+	  <div class="freitem">
+	    <div class="">${userlist.uid}</div>
+	     <div class=""><a href="user/showOtheruser.do?userid=${userlist.uid}">${userlist.username}</a></div>
+		<div class="">${userlist.userintroduce}</div><br />
+	  </div>
+   </c:forEach>
+   			
   </body>
 
 </html>
