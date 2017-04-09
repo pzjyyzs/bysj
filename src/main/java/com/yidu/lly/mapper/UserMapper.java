@@ -7,6 +7,8 @@ public interface UserMapper {
 	 
 	 public User selectmyUser(String username);
 	 
+	 public User selectUserToid(int userid);
+	 
 	 public void updateUser(User user);
 	 
 	 public void insertUser(User user);

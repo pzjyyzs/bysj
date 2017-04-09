@@ -6,6 +6,8 @@ public interface UserService {
 
 	public User selectUser(User user);
 	
+	public User selectUser(int userid);
+	
 	public User selectUser(String name);
 	
 	public void updateUser(User user);

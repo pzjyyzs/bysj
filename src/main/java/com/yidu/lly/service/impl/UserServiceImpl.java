@@ -46,6 +46,12 @@ public class UserServiceImpl implements UserService{
 		return false;
 	}
 
+	@Override
+	public User selectUser(int userid) {
+		// TODO Auto-generated method stub
+		return this.userDao.selectUserToid(userid);
+	}
+
 
 	
 
