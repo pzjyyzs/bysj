@@ -1,5 +1,6 @@
 package com.yidu.lly.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
+import com.yidu.lly.model.Article;
 import com.yidu.lly.model.Friend;
 import com.yidu.lly.model.User;
+import com.yidu.lly.service.ArticleService;
 import com.yidu.lly.service.FriendService;
 import com.yidu.lly.service.UserService;
 
@@ -45,7 +49,18 @@ public class UserController {
 		this.friendService = friendService;
 	}
 	
+	@Resource(name="articleServiceImpl")
+	private ArticleService articleService;
 	
+	public ArticleService getArticleService() {
+		return articleService;
+	}
+
+	public void setArticleService(ArticleService articleService) {
+		this.articleService = articleService;
+	}
+
+	//登录
 	@RequestMapping(value="/showuser.do", method = RequestMethod.POST)
 	public String toIndex(HttpServletRequest request,HttpSession session){
 		User userLogin=new User();
@@ -56,9 +71,16 @@ public class UserController {
 
 		if(this.userService.selectUser(userLogin)!=null){
 		  userLogin=this.userService.selectUser(userLogin);
-     
+		  List<Article> aList=this.articleService.showArticle();
+		  List<User> ulist=new ArrayList<User>();
+		  for(int i=0;i<aList.size();i++){
+			  User u=this.userService.selectUser(aList.get(i).getUid());
+			  ulist.add(u);
+		  }
           session.setAttribute("user", userLogin);
-      		return "index";
+          session.setAttribute("alist", aList);
+          session.setAttribute("ulist", ulist);
+      	  return "index";
 		}else{
 			System.out.println("can not get user");
 			session.setAttribute("error", "用户名或密码错误");
@@ -84,6 +106,7 @@ public class UserController {
 		return "index";
 	}
 	
+	//检测用户名是否重复
 	@RequestMapping(value="/findRegister.do",method=RequestMethod.POST)
 	public @ResponseBody Map<String,Object> findRegisterUserName(HttpServletRequest request,HttpServletResponse response){
 		 String name=request.getParameter("registerUsername");

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,11 +43,14 @@ public class ArticleController {
 		this.articleService = articleService;
 	}
 	
+	//发表文章
 	@RequestMapping(value="/addarticle.do", method = RequestMethod.POST)
 	public@ResponseBody Map<String,Object> addArticle(HttpServletRequest request,HttpSession session){
 		Map<String,Object> map = new HashMap<String,Object>();
 		String articlename=request.getParameter("note_title");
 		String articlecontent=request.getParameter("note_content");
+		String aimgaddress=request.getParameter("aimgaddress");
+		System.out.println(aimgaddress);
 		User user=(User) session.getAttribute("user");
 		Date date=new Date();
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -58,11 +62,13 @@ public class ArticleController {
 		article.setArticletime(articletime);
 		article.setUid(user.getUid());
 		article.setArticleread(0);
+		article.setAimgaddress(aimgaddress);
 		
 		this.articleService.insertArticle(article);
 		return map;
 	}
 	
+	//上传图片
 	@RequestMapping(value="/editImage.do",method=RequestMethod.POST)
 	public String  editTbReportImage(@RequestParam("reportFile") CommonsMultipartFile file,
 			HttpServletResponse response,   
@@ -92,5 +98,13 @@ public class ArticleController {
 
 		}
 		return null;
+	}
+	
+	@RequestMapping(value="/showArticleId.do",method=RequestMethod.GET)
+	public String showArticle(@RequestParam("aid") int aid,HttpServletRequest request,HttpSession session){
+		
+		Article article=this.articleService.showArticleId(aid);
+		session.setAttribute("article", article);
+		return "article/showArticle";
 	}
 }

@@ -28,7 +28,8 @@ function addArticle(){
 		dataType:"json",
 		data:{
 			note_title:$("#note_title").val(),
-			note_content:$("#note_content").val()
+			note_content:$("#note_content").val(),
+			aimgaddress:$("#aimgaddress").val()
 		},
 		success:function(data){
 			$("#send_success").css("display","block");
@@ -46,6 +47,9 @@ function ajaxFileUpload(){
 			var str="![]("+data.substring(63,92)+")";
 			var note_content=$("#note_content").val()+str;
 			$("#note_content").val(note_content);
+			
+			var aimgaddress=$("#aimgaddress").val()+data.substring(63,92);
+			$("#aimgaddress").val(aimgaddress.substring(0,29));
 		},
 		error:function(data){
 			alert("失败");
