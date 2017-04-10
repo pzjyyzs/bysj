@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mysql.fabric.xmlrpc.base.Array;
+
 import com.yidu.lly.model.Article;
 import com.yidu.lly.model.Friend;
 import com.yidu.lly.model.User;
