@@ -81,6 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 							</ul>
 							<textarea class="text mousetrap" name="note_content" id="note_content"></textarea>
+							<input type="hidden" id="aimgaddress"/>
 							<div id="kalamu-image-model" class="kalamu-image-modal">
 								<div class="modal-header">
 									<h3>插入图片</h3>
@@ -94,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<button class="btn-link" id="canelup">取消</button>
 							</div>
 							<div id="send_success" class="kalamu-image-modal" style="display: none;">
-								<button class="btn-link" id="send_success_dis">X</button>
+								<a class="btn-link" id="send_success_dis" href="javascript:void(null)">X</a>
 								<div class="modal-header">
 									<h3>发表成功</h3>
 								</div>

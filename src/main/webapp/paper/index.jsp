@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -20,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<title>首页 - 易读</title>
 		<link rel="icon" href="img/logo.ico"/>
 		<link rel="stylesheet" href="css/index.css" />
-		<link rel="stylesheet" href="http://cdn.bootcss.com/normalize/5.0.0/normalize.min.css"/>
+		<link rel="stylesheet" href="css/normalize.css"/>
 		<link rel="stylesheet" href="css/bootstrap.min.css"/>
 		<script type="text/javascript" src="js/jquery-3.1.1.min.js" ></script>
 		<script src="js/bootstrap.min.js"></script>
@@ -37,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</a>
 				<!-- 右上角-->
 				<!-- 登录显示写文章-->
-				<a class="btn write-btn" target="_blank">
+				<a class="btn write-btn" target="_blank" href="paper/article/write.jsp">
 					<i class="glyphicon glyphicon-leaf">写文章</i>
 				</a>
 				<div class="user">
@@ -102,7 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="col-md-8 main">
 					<div class="recommend-collection">
 						<a target="_blank" class="collection" href="/">
-							<img src=""/ alt="195">
+							<img src="" alt="195">
 							<div class="name">漫画·手绘</div>
 						</a>
 						<a class="more-hot-collection" target="_blank" href="/">
@@ -115,39 +116,82 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 					<div class="list-container">
 						<ul class="note-list">
-							<li class="have-img" id="node-">
+							<c:forEach items="${sessionScope.alist }" var="article">
+							<c:if test="${not empty article.aimgaddress }">
+								<li class="hava-img">
 								<a class="wrap-img" href="" target="_blank">
-									<img src="">
+									<img src="${article.aimgaddress }" />
 								</a>
 								<div class="content">
 									<div class="author">
-										<a class="avatar" target="_blank" href="">
+										<a class="avatar" target="_blank" href="javascript:void(null)">
 											<img src="" />
 										</a>
 										<div class="name">
-											<a class="blue-link" target="_blank" href="">作者</a>
-											<span class="time">时间</span>
+											<a class="blue-link" target="_blank" href="">
+											<c:forEach items="${sessionScope.ulist }" var="user">
+												<c:if test="${user.uid==article.uid }">${user.username }</c:if>
+											</c:forEach>
+											</a>
+											<span class="time">${article.articletime }</span>
 										</div>
 									</div>
-									<a class="title" target="_blank" href="">标题</a>
-									<p class="abstract">部分内容显示</p>
+									<a class="title" target="_blank" href="article/showArticle.do?aid=${article.aid }">${article.articlename }</a>
+									<p class="abstract">${article.articlecontent }</p>
 									<div class="meta">
-										<a class="collection-tag" target="_blank" href="">专题名称</a>
-										<a target="_blank" href="">
+										<a target="_blank" href="javascript:void(null)">
 											<i class="glyphicon glyphicon-record"></i>
-											阅读数量
+											${article.articleread }
 										</a>
-										<a target="_blank" href="">
+										<a target="_blank" href="javascript:void(null)">
 											<i class="glyphicon glyphicon-comment"></i>
 											评论数量
 										</a>
-										<a target="_blank" href="">
+										<a target="_blank" href="javascript:void(null)">
 											<i class="glyphicon glyphicon-heart"></i>
 											点赞数量
 										</a>
 									</div>
 								</div>
-							</li>
+
+								</li>
+							</c:if>
+							<c:if test="${empty article.aimgaddress }">
+								<li class="no-img">
+									<div class="content">
+										<div class="author">
+											<a class="avatar" target="_blank" href="javascript:void(null)">
+												<img src="" />
+											</a>
+											<div class="name">
+												<a class="blue-link" target="_blank" href="">
+													<c:forEach items="${sessionScope.ulist }" var="user">
+														<c:if test="${user.uid==article.uid }">${user.username }</c:if>
+													</c:forEach>
+												</a>
+												<span class="time">${article.articletime }</span>
+											</div>
+										</div>
+										<a class="title" target="_blank" href="article/showArticleId.do?aid=${article.aid }">${article.articlename }</a>
+										<p class="abstract">${article.articlecontent }</p>
+										<div class="meta">
+											<a target="_blank" href="javascript:void(null)">
+												<i class="glyphicon glyphicon-record"></i>
+												${article.articleread }
+											</a>
+											<a target="_blank" href="javascript:void(null)">
+												<i class="glyphicon glyphicon-comment"></i>
+												评论数量
+											</a>
+											<a target="_blank" href="javascript:void(null)">
+												<i class="glyphicon glyphicon-heart"></i>
+												点赞数量
+											</a>
+										</div>
+									</div>
+								</li>
+							</c:if>
+							</c:forEach>
 						</ul>
 					</div>
 				</div>

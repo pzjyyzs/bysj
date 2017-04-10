@@ -2,7 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yidu.lly.mapper.ArticleMapper" >
   <insert id="insertArticle" parameterType="com.yidu.lly.model.Article">
-  	insert into article(aid,articlename,articletime,articlecontent,uid,articleread)
-  		values(#{aid},#{articlename},#{articletime},#{articlecontent},#{uid},#{articleread})
+  	insert into article(aid,articlename,articletime,articlecontent,uid,articleread,aimgaddress)
+  		values(#{aid},#{articlename},#{articletime},#{articlecontent},#{uid},#{articleread},#{aimgaddress})
   </insert>
+  <select id="showArticle" resultType="com.yidu.lly.model.Article">
+  	select * from article limit 0,2
+  </select>
+  
+  <select id="showArticleId" parameterType="int" resultType="com.yidu.lly.model.Article">
+  	select * from article where aid=#{aid}
+  </select>
+ 
   </mapper>

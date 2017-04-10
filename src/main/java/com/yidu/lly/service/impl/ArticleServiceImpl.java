@@ -1,5 +1,7 @@
 package com.yidu.lly.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,17 @@ public class ArticleServiceImpl implements ArticleService{
 	
 	public void insertArticle(Article article) {
 		this.articleMapper.insertArticle(article);	
+	}
+
+	@Override
+	public List<Article> showArticle() {
+		
+		return this.articleMapper.showArticle();
+	}
+
+	@Override
+	public Article showArticleId(int aid) {
+		return this.articleMapper.showArticleId(aid);
 	}
 
 }

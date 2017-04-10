@@ -7,6 +7,13 @@ public class Article {
 	private String articlecontent;
 	private int uid;
 	private int articleread;
+	private String aimgaddress;
+	public String getAimgaddress() {
+		return aimgaddress;
+	}
+	public void setAimgaddress(String aimgaddress) {
+		this.aimgaddress = aimgaddress;
+	}
 	public int getAid() {
 		return aid;
 	}
