@@ -57,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</a>
 							</li>
 							<li class="notification">
-								<a href="/">
+								<a href="Message/ToMessage.do">
 									<span>消息</span>
 								</a>
 							</li>
