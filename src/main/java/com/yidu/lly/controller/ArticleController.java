@@ -26,6 +26,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import com.yidu.lly.model.Article;
 import com.yidu.lly.model.User;
 import com.yidu.lly.service.ArticleService;
+import com.yidu.lly.service.UserService;
 
 
 @Controller
@@ -43,6 +44,16 @@ public class ArticleController {
 		this.articleService = articleService;
 	}
 	
+	@Resource(name="userServiceImpl")
+	private UserService userService;
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
 	//发表文章
 	@RequestMapping(value="/addarticle.do", method = RequestMethod.POST)
 	public@ResponseBody Map<String,Object> addArticle(HttpServletRequest request,HttpSession session){
@@ -104,7 +115,10 @@ public class ArticleController {
 	public String showArticle(@RequestParam("aid") int aid,HttpServletRequest request,HttpSession session){
 		
 		Article article=this.articleService.showArticleId(aid);
+		User auser=this.userService.selectUser(article.getUid());
+		
 		session.setAttribute("article", article);
-		return "article/showArticle";
+		session.setAttribute("auser", auser);
+		return "article/wenzhang";
 	}
 }
