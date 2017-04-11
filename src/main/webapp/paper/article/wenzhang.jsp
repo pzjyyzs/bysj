@@ -123,7 +123,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="pinglun">
 				<div>
 					<form class="new-comment">
-						<textarea placeholder="写下你的评论"></textarea>
+						<textarea placeholder="写下你的评论" id="writecomment"></textarea>
+						<a class="btn btn-send" id="btn-send-com">发送</a>
 					</form>
 				</div>
 				<div id="comment-list" class="comment-list">

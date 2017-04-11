@@ -136,7 +136,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<span class="time">${article.articletime }</span>
 										</div>
 									</div>
-									<a class="title" target="_blank" href="article/showArticle.do?aid=${article.aid }">${article.articlename }</a>
+									<a class="title" target="_blank" href="article/showArticleId.do?aid=${article.aid }">${article.articlename }</a>
 									<p class="abstract">${article.articlecontent }</p>
 									<div class="meta">
 										<a target="_blank" href="javascript:void(null)">
