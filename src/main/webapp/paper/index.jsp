@@ -28,7 +28,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <body>
 		<!-- 	全局顶部导航-->
 <jsp:include page="header.jsp"/> 
 		<div class="container index">
@@ -191,5 +190,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		
 	</body>
-  </body>
 </html>
