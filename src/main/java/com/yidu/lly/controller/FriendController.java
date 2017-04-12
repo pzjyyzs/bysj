@@ -106,6 +106,25 @@ public class FriendController {
 			return "redirect:/user/showOtheruser.do?userid="+friendId+"";
 				
 		}
+		
+		//显示粉丝列表
+				@RequestMapping(value="/showmyfans.do", method = RequestMethod.GET)
+				public String showmyfans(HttpServletRequest request,HttpSession session){
+					User user=(User) session.getAttribute("user");
+					
+					List<Friend> Friendlist =this.friendService.selectMyFans(user);
+					
+					List<User>  Userlist=new ArrayList<User>();
+					
+					for (Friend friend : Friendlist) {    
+					    Userlist.add( this.userService.selectUser(friend.getFname()));
+					}  
+					
+					session.setAttribute("userlist", Userlist);
+					
+					return "message/MyFans";
+				}		
+				
 	
 	
 }
