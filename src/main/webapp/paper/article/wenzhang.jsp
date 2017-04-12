@@ -128,20 +128,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</form>
 				</div>
 				<div id="comment-list" class="comment-list">
+				<c:forEach items="${sessionScope.comlist }" var="comment">
 					<div>
 						<div class="author">
 							<a target="_blank" class="avatar">
 								<img src="">
 							</a>
 							<div class="info">
-								<a target="_blank" class="name">姓名</a>
+							<c:set var="flag" value="0" />
+							<c:forEach items="${sessionScope.usercomlist }" var="user">
+							
+							<c:if test="${flag==0}">
+								<c:if test="${comment.comuserid == user.uid }">
+									<a target="_blank" class="name">${user.username }</a>
+									 <c:set var="flag" value="1"/>
+								</c:if>	
+							</c:if>
+							</c:forEach>
 								<div class="meta">
-									<span>时间</span>
+									<span>${comment.comtime }</span>
 								</div>
 							</div>
 						</div>
 						<div class="comment-wrap">
-							<p>评论内容</p>
+							<p>${comment.comtext }</p>
 							<div class="tool-group">
 								<a>
 									<i class="glyphicon glyphicon-comment"></i>
@@ -150,6 +160,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</div>
 					</div>
+				 </c:forEach>
 				</div>
 			</div>
 		</div>

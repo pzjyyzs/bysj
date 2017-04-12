@@ -237,6 +237,7 @@ nav form .search-btn{
 .pinglun .new-comment{
 	position: relative;
 	margin-left: 48px;
+	overflow: hidden;
 }
 .pinglun .new-comment textarea{
 	padding: 10px 15px;

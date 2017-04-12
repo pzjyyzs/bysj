@@ -5,4 +5,8 @@
   	insert into Comment(comid,comtext,comtime,comuserid,comarid)
   		values(#{comid},#{comtext},#{comtime},#{comuserid},#{comarid})
   </insert>
+  <select id="showComment" parameterType="int" resultType="com.yidu.lly.model.Comment">
+  	select * from comment where comarid=#{comarid}
+  </select>
+  
   </mapper>

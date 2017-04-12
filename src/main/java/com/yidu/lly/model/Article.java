@@ -1,5 +1,6 @@
 package com.yidu.lly.model;
-
+//文章类 设置文章类的属性
+//属性有文章id，文章名，文章发布时间，文章内容，作者id，文章阅读量，文章首图的地址
 public class Article {
 	private int aid;
 	private String articlename;
@@ -8,6 +9,7 @@ public class Article {
 	private int uid;
 	private int articleread;
 	private String aimgaddress;
+	//设置各个属性的get、set方法
 	public String getAimgaddress() {
 		return aimgaddress;
 	}

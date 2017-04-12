@@ -16,7 +16,10 @@ function addcomment(){
 			comtext:$("#writecomment").val()
 		},
 		success:function(data){
-			alert("success!!!");
+			 location.reload();
+		},
+		error:function(){
+			alert("error");
 		}
-	})
+	});
 }

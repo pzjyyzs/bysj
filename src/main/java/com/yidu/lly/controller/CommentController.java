@@ -2,6 +2,8 @@ package com.yidu.lly.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +12,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yidu.lly.model.Article;
 import com.yidu.lly.model.Comment;
@@ -32,7 +36,8 @@ public class CommentController {
 	}
 	//添加评论
 	@RequestMapping(value="/addcomment.do",method = RequestMethod.POST)
-	public String addcomment(HttpServletRequest request,HttpSession session){
+	public @ResponseBody Map<String,Object> addcomment(HttpServletRequest request,HttpSession session){
+		Map<String,Object> map = new HashMap<String,Object>();
 		Article article =(Article) session.getAttribute("article");
 		Comment c = new Comment();
 		c.setComarid(article.getAid());
@@ -47,11 +52,11 @@ public class CommentController {
 		c.setComtime(comtime);
 		this.commentService.insertComment(c);
 		
-		
-		
-		return null;
-		
+		return map;
 	}
+	//显示评论
+
+		
 	
 
 }

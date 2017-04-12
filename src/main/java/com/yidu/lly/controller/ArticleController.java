@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -24,14 +26,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.yidu.lly.model.Article;
+import com.yidu.lly.model.Comment;
 import com.yidu.lly.model.User;
 import com.yidu.lly.service.ArticleService;
+import com.yidu.lly.service.CommentService;
 import com.yidu.lly.service.UserService;
 
 
 @Controller
 @RequestMapping("/article")
 public class ArticleController {
+	@Resource(name="commentServiceImpl")
+	private CommentService commentService;
+	
+	public CommentService getCommentService() {
+		return commentService;
+	}
+
+	public void setCommentService(CommentService commentService) {
+		this.commentService = commentService;
+	}
 
 	@Resource(name="articleServiceImpl")
 	private ArticleService articleService;
@@ -110,15 +124,24 @@ public class ArticleController {
 		}
 		return null;
 	}
-	
+	//显示文章
 	@RequestMapping(value="/showArticleId.do",method=RequestMethod.GET)
 	public String showArticle(@RequestParam("aid") int aid,HttpServletRequest request,HttpSession session){
 		
 		Article article=this.articleService.showArticleId(aid);
+		List<Comment> comlist=this.commentService.showComent(aid);
+		List<User> usercomlist=new ArrayList<User>();
 		User auser=this.userService.selectUser(article.getUid());
+		for(int i=0;i<comlist.size();i++){
+			User comuser=this.userService.selectUser(comlist.get(i).getComuserid());
+			usercomlist.add(comuser);
+		}
 		
 		session.setAttribute("article", article);
 		session.setAttribute("auser", auser);
+		session.setAttribute("comlist", comlist);
+		session.setAttribute("usercomlist", usercomlist);
 		return "article/wenzhang";
 	}
+	
 }
