@@ -3,22 +3,21 @@ function startRequest(){
 	$.ajax({
 		url:"json/FlushRemind.do",
 		type:"get",
-		async: false,
+		async: true,
 		dataType:'json',
 		data:{ 
 			"remindid":$("#remindid").val(),
-			"remindx1":$("#remindx1").val(),
 			},
-		success:function(data){
-				 $("#remindx1").val(data.remindx2);
-				 
-				 if(data.bool==true){
-				alert("你有新消息");
-				 }
+		success:function(data){	 
+				 jQuery.each(data, function(i,item){  
+					 if(!item.mark){ 
+						 $(".xiaoxi").html("你有新消息");
+						 }
+		            });
 		},
-		error:function(){
+		/*error:function(){
 			alert("错了");
-		}
+		}*/
 	});
 	
 }
@@ -26,6 +25,24 @@ function startRequest(){
 
 $(document).ready(function () {	
 	setInterval("startRequest()",1000);
+	
+	$(".readxiaoxi").click(function(){
+	
+		$.ajax({
+			url:"json/readmail.do",
+			type:"get",
+			async: true,
+			/*dataType:'json',*/
+			data:{ 
+				"useruid":$("#useruid").val(),
+				"userlistuid":$("#userlistuid").val(),
+				},
+			success:function(){
+				
+			},
+		});
+	  });
+	
 	});
 
 

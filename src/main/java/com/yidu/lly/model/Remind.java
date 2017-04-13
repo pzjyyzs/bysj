@@ -6,7 +6,8 @@ public class Remind {
 	    private Integer otherid;
 	    private Integer type;
 	    private String creattime;
-	    private String mark;
+	    private boolean mark;
+	    
 		public Integer getId() {
 			return id;
 		}
@@ -37,12 +38,13 @@ public class Remind {
 		public void setCreattime(String creattime) {
 			this.creattime = creattime;
 		}
-		public String getMark() {
+		public boolean isMark() {
 			return mark;
 		}
-		public void setMark(String mark) {
+		public void setMark(boolean mark) {
 			this.mark = mark;
 		}
+	
 
 	    
 	    

@@ -1,5 +1,8 @@
 package com.yidu.lly.service.impl;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +17,39 @@ public class RemindServiceImpl implements RemindService {
 	private RemindMapper RemindMapper;
 
 	@Override
-	public Remind selectRMailemind(int remindid) {
+	public Remind selectMailRemind(int remindid) {
 		// TODO Auto-generated method stub
-		return this.RemindMapper.selectRMailemind(remindid);
+		return this.RemindMapper.selectMailRemind(remindid);
+	}
+
+	@Override
+	public List<Remind> selectAllMailRemind(int remindid) {
+		// TODO Auto-generated method stub
+		return this.RemindMapper.selectAllMailRemind(remindid);
+	}
+
+	@Override
+	public Remind selectTopMailRemind(int remindid, int objectremind) {
+		
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		
+		params.put("remindid", remindid);
+		
+		params.put("objectremind", objectremind);
+		// TODO Auto-generated method stub
+		return this.RemindMapper.selectTopMailRemind(params);
+	}
+
+	@Override
+	public void updateMailRemind(int useruid, int otheruid) {
+		// TODO Auto-generated method stub
+		
+        HashMap<String,Object> params = new HashMap<String,Object>();
+		
+		params.put("useruid", useruid);
+		params.put("otheruid", otheruid);
+		
+		this.RemindMapper.updateMailRemind(params);
 	}
 	
 

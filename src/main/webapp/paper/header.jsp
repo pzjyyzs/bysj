@@ -9,12 +9,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript" src="js/remind.js" ></script>
 
 <input id="remindid" type="hidden" value="${user.uid}">
-<input id="remindx1" type="hidden" value="">
+<%-- <input id="remindx1" type="text" value="${remind.id}"> --%>
 		<!-- 	全局顶部导航-->
 		<nav class="navbar">
 			<div class="width-limit">
 				<!-- 左上方Logo-->
-				<a class="logo">
+				<a class="logo" href="paper/index.jsp">
 					<img src="img/title.png" width="75px" height="50px"/>
 				</a>
 				<!-- 右上角-->
@@ -37,9 +37,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<span>读友圈</span>
 								</a>
 							</li>
-							<li class="notification">
+							<li class="">
 								<a href="mail/showObjectUserList.do?">
-									<span>消息</span>
+									<span class="xiaoxi">消息</span>
 								</a>
 							</li>
 							<li class="search">

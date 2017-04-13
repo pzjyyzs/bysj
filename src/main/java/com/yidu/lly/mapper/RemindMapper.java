@@ -1,7 +1,16 @@
 package com.yidu.lly.mapper;
 
+import java.util.List;
+import java.util.Map;
+
 import com.yidu.lly.model.Remind;
 
 public interface RemindMapper {
-	public Remind selectRMailemind(int remindid);
+	public Remind selectMailRemind(int remindid);
+	
+	public List<Remind> selectAllMailRemind(int remindid);
+	
+	public Remind selectTopMailRemind(Map<String, Object> parms);
+	
+	public void updateMailRemind(Map<String, Object> parms);
 }

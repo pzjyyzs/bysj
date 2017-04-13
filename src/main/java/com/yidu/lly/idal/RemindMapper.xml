@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yidu.lly.mapper.RemindMapper" >
-
+ <resultMap type="com.yidu.lly.model.Remind" id="remindMailList">  
+                <result property="id" column="id"/>  
+                <result property="myid" column="myid"/>  
+                <result property="otherid" column="otherid"/>  
+                 <result property="type" column="type"/>  
+                <result property="creattime" column="creattime"/>  
+                <result property="mark" column="mark"/>  
+        </resultMap>  
   
-  <select id="selectRMailemind" parameterType="int" resultType="com.yidu.lly.model.Remind">
+  <select id="selectMailRemind" parameterType="int" resultType="com.yidu.lly.model.Remind">
    	select * from remind where otherid=#{remindid} and type=0 order by id desc limit 1
   </select>
+  
+  <select id="selectAllMailRemind" parameterType="int" resultMap="remindMailList">
+   	select * from remind where otherid=#{remindid} and type=0 
+  </select>
+  
+   <select id="selectTopMailRemind" parameterType="java.util.Map" resultType="com.yidu.lly.model.Remind">
+   select * from remind where otherid=#{remindid} and myid=#{objectremind} and type=0 order by id desc limit 1
+  </select>
+  
+   <update id="updateMailRemind" parameterType="java.util.Map" >
+   update remind set mark=1 where myid=#{otheruid} and otherid=#{useruid} and type=0
+</update>
+  
+  
   </mapper>
