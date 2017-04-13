@@ -6,7 +6,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+		<script type="text/javascript" src="js/remind.js" ></script>
 
+<input id="remindid" type="hidden" value="${user.uid}">
+<input id="remindx1" type="hidden" value="">
 		<!-- 	全局顶部导航-->
 		<nav class="navbar">
 			<div class="width-limit">
@@ -35,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</a>
 							</li>
 							<li class="notification">
-								<a href="Message/ToMessage.do">
+								<a href="mail/showObjectUserList.do?">
 									<span>消息</span>
 								</a>
 							</li>
