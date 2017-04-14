@@ -2,8 +2,8 @@ package com.yidu.lly.model;
 
 public class Friend {
 	  	private Integer id;
-		private String mname;
-	    private String fname;
+		/*private String mname;
+	    private String fname;*/
 	    private Integer mid;
 	    private Integer fid;
 	    
@@ -26,7 +26,7 @@ public class Friend {
 		public void setId(Integer id) {
 			this.id = id;
 		}
-		public String getMname() {
+		/*public String getMname() {
 			return mname;
 		}
 		public void setMname(String mname) {
@@ -37,7 +37,7 @@ public class Friend {
 		}
 		public void setFname(String fname) {
 			this.fname = fname;
-		}
+		}*/
 
 	 
 	    

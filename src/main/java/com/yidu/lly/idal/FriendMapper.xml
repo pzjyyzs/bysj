@@ -5,30 +5,30 @@
 
 <resultMap type="com.yidu.lly.model.Friend" id="friendList">  
                 <result property="id" column="id"/>  
-                <result property="mname" column="mname"/>  
-                <result property="fname" column="fname"/>  
+                <result property="mid" column="mid"/>  
+                <result property="fid" column="fid"/>  
         </resultMap>  
   <select id="selectFriend" parameterType="com.yidu.lly.model.User" resultMap="friendList">
-  	select * from friend where fname=#{username} 
+  	select * from friend where fid=#{uid} 
   </select>
   
    <select id="selectMyFans" parameterType="com.yidu.lly.model.User" resultMap="friendList">
-  	select * from friend where mname=#{username} 
+  	select * from friend where mid=#{uid} 
   </select>
   
   <delete id="delFriend" parameterType="com.yidu.lly.model.Friend">  
-  delete from friend where mname=#{mname} and fname=#{fname}
+  delete from friend where mid=#{mid} and fid=#{fid}
       
 </delete> 
   
   
  <select id="selectmyFriend" parameterType="com.yidu.lly.model.Friend" resultType="com.yidu.lly.model.Friend">
-  	select * from friend where mname=#{mname} and fname=#{fname}
+  	select * from friend where mid=#{mid} and fid=#{fid}
   </select>
   
   <insert id="insertFriend" parameterType="com.yidu.lly.model.Friend">
-  	insert into friend(mname,fname,mid,fid)
-  		values(#{mname},#{fname},#{mid},#{fid})
+  	insert into friend(mid,fid)
+  		values(#{mid},#{fid})
   </insert>
   
   

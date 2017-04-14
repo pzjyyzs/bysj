@@ -63,7 +63,7 @@ public class FriendController {
 		List<User>  Userlist=new ArrayList<User>();
 		
 		for (Friend friend : Friendlist) {    
-		    Userlist.add( this.userService.selectUser(friend.getMname()));
+		    Userlist.add( this.userService.selectUser(friend.getMid()));
 		}  
 		
 		session.setAttribute("userlist", Userlist);
@@ -83,8 +83,7 @@ public class FriendController {
 		Integer FriendId=Integer.parseInt(friendId);
 		
 		Friend myfriend=new Friend();
-		myfriend.setMname(friendName);
-		myfriend.setFname(MyName);
+
 		myfriend.setMid(FriendId);
 	    myfriend.setFid(MyId);	
 		this.friendService.insertFriend(myfriend);
@@ -97,14 +96,17 @@ public class FriendController {
 		public String delfriend(HttpServletRequest request,HttpSession session){
 			User Userme=(User) session.getAttribute("user");
 			String MyName=Userme.getUsername();
+			Integer MyId=Userme.getUid();
+			
 			String friendName=request.getParameter("username");
-			
 			String friendId=request.getParameter("userid");
-			
+			Integer FriendId=Integer.parseInt(friendId);
 
 			Friend myfriend=new Friend();
-			myfriend.setMname(friendName);
-			myfriend.setFname(MyName);
+			
+			myfriend.setMid(FriendId);
+		    myfriend.setFid(MyId);	
+			
 			
 		    this.friendService.delFriend(myfriend);
 			return "redirect:/user/showOtheruser.do?userid="+friendId+"";
@@ -121,7 +123,7 @@ public class FriendController {
 					List<User>  Userlist=new ArrayList<User>();
 					
 					for (Friend friend : Friendlist) {    
-					    Userlist.add( this.userService.selectUser(friend.getFname()));
+					    Userlist.add( this.userService.selectUser(friend.getFid()));
 					}  
 					
 					session.setAttribute("userlist", Userlist);

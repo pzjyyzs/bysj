@@ -209,13 +209,13 @@ public class UserController {
 
 				   //判断是否隐藏关注按钮
 				   User user=(User)session.getAttribute("user");
-				    String MyName=user.getUsername();
-				    String friendName=OtherUser.getUsername();
+				    Integer MyId=user.getUid();
+				    Integer friendId=OtherUser.getUid();
 				    
 				  
 					Friend myfriend=new Friend();
-					myfriend.setMname(friendName);
-					myfriend.setFname(MyName);
+					myfriend.setMid(friendId);
+					myfriend.setFid(MyId);
 					String str1="";
 					String str2="";
 					if(this.friendService.selectmyFriend(myfriend)!=null){
