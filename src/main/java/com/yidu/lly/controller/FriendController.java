@@ -77,12 +77,16 @@ public class FriendController {
 		String MyName=Userme.getUsername();
 		String friendName=request.getParameter("username");
 		
+		
+		Integer MyId=Userme.getUid();
 		String friendId=request.getParameter("userid");
+		Integer FriendId=Integer.parseInt(friendId);
 		
 		Friend myfriend=new Friend();
 		myfriend.setMname(friendName);
 		myfriend.setFname(MyName);
-		
+		myfriend.setMid(FriendId);
+	    myfriend.setFid(MyId);	
 		this.friendService.insertFriend(myfriend);
 		return "redirect:/user/showOtheruser.do?userid="+friendId+"";
 			

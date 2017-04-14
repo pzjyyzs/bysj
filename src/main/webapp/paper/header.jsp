@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</li>
 							<li class="">
 								<a href="mail/showObjectUserList.do?">
-									<span class="xiaoxi">消息</span>
+									<span id="Allxiaoxi">消息</span>
 								</a>
 							</li>
 							<li class="search">

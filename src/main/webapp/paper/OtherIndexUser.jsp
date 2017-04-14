@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="css/indexuser.css" />
 		<script type="text/javascript" src="js/jquery-3.1.1.min.js" ></script>
-		<script type="text/javascript" src="js/login.js"></script>
+		<script type="text/javascript" src="js/flushSsession.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 	<script>
 function UpdateHtml(){
@@ -74,6 +74,10 @@ function UpdateHtml(){
   </head>
   
   <body>
+<jsp:include page="header.jsp"/> 
+
+  <input class="myguanzhuId" type="text" value="${user.uid}">
+   <input class="otherguanzhuId" type="text" value="${OtherUser.uid}">
 
   姓名：${OtherUser.username}<br>
     性别：${OtherUser.sex}<br>

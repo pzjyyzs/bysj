@@ -18,12 +18,20 @@
    	select * from remind where otherid=#{remindid} and type=0 
   </select>
   
+    <select id="selectGuanZhuRemind" parameterType="int" resultMap="remindMailList">
+   	select * from remind where myid=#{remindid} and type=4 
+  </select>
+  
    <select id="selectTopMailRemind" parameterType="java.util.Map" resultType="com.yidu.lly.model.Remind">
    select * from remind where otherid=#{remindid} and myid=#{objectremind} and type=0 order by id desc limit 1
   </select>
   
    <update id="updateMailRemind" parameterType="java.util.Map" >
    update remind set mark=1 where myid=#{otheruid} and otherid=#{useruid} and type=0
+</update>
+
+ <update id="updateGuanzhuRemind" parameterType="java.util.Map" >
+   update remind set mark=1 where myid=#{myguanzhuId} and otherid=#{otherguanzhuId} and type=4
 </update>
   
   

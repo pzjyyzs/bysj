@@ -86,15 +86,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</a>
 										<div class="name">
 											<a class="blue-link" target="_blank" href="">
-											<c:set var="flag" value="0" />
-													<c:forEach items="${sessionScope.ulist }" var="user">
-													<c:if test="${flag==0}">
-														<c:if test="${user.uid==article.uid }">
-														${user.username }
-														<c:set var="flag" value="1"/>
-														</c:if>	 
-													</c:if>	
-													</c:forEach>
+											<c:forEach items="${sessionScope.ulist }" var="user">
+												<c:if test="${user.uid==article.uid }">${user.username }</c:if>
+											</c:forEach>
 											</a>
 											<span class="time">${article.articletime }</span>
 										</div>
@@ -127,17 +121,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												<img src="" />
 											</a>
 											<div class="name">
-												<a class="blue-link" target="_blank" href="">
-												<c:set var="flag" value="0" />
+												
+													
 													<c:forEach items="${sessionScope.ulist }" var="user">
-													<c:if test="${flag==0}">
-														<c:if test="${user.uid==article.uid }">
-														${user.username }
-														<c:set var="flag" value="1"/>
-														</c:if>	 
-													</c:if>	
+													<a class="blue-link" target="_blank" href="user/showOtheruser.do?userid=${user.uid}">
+														<c:if test="${user.uid==article.uid }">${user.username }</c:if>
+													</a>
 													</c:forEach>
-												</a>
+												
 												<span class="time">${article.articletime }</span>
 											</div>
 										</div>

@@ -5,11 +5,4 @@
 		insert into collection(cid,collectionname,collectionintroduce,uid,collectionimg)
 		 value(#{cid},#{collectionname},#{collectionintroduce},#{uid},#{collectionimg})
 	</insert>
-	<select id="showCollection" parameterType="int" resultType="com.yidu.lly.model.Collection">
-		select * from collection where cid=#{cid} 
-	</select>
-	<update id="updateCollection" parameterType="com.yidu.lly.model.Collection">
-		update collection set collectionname=#{collectionname},
-		collectionintroduce=#{collectionintroduce},collectionimg=#{collectionimg} where cid=#{cid} and uid=#{uid}
-	</update>
 </mapper>

@@ -9,6 +9,7 @@ public interface UserMapper {
 	 
 	 public User selectUserToid(int userid);
 	 
+	 
 	 public void updateUser(User user);
 	 
 	 public void insertUser(User user);

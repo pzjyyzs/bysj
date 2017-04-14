@@ -169,12 +169,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="main">
 				<div class="title">被以下专题收入</div>
 				<div class="include-collection">
-					<div class="modal-wrap add-collection-wrap">
-						<a class="add-collection">
-							<i class="glyphicon glyphicon-plus"></i>
-							<div>我的专题</div>
-						</a>
-					</div>
 					<a href="" target="_blank" class="item">
 						<img src="img/enhanced-buzz-wide-16461-1372163238-8.jpg">
 						<div class="name">生活家</div>

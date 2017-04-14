@@ -51,6 +51,26 @@ public class RemindServiceImpl implements RemindService {
 		
 		this.RemindMapper.updateMailRemind(params);
 	}
+
+	@Override
+	public List<Remind> selectGuanZhuRemind(int remindid) {
+		// TODO Auto-generated method stub
+		
+		
+		return this.RemindMapper.selectGuanZhuRemind(remindid);
+	}
+
+	@Override
+	public void updateGuanzhuRemind(int myguanzhuId, int otherguanzhuId) {
+		// TODO Auto-generated method stub
+		 HashMap<String,Object> params = new HashMap<String,Object>();
+			
+			params.put("myguanzhuId", myguanzhuId);
+			params.put("otherguanzhuId", otherguanzhuId);
+		this.RemindMapper.updateGuanzhuRemind(params);
+		
+		
+	}
 	
 
 }

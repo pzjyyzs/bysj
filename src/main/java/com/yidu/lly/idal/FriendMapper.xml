@@ -27,13 +27,13 @@
   </select>
   
   <insert id="insertFriend" parameterType="com.yidu.lly.model.Friend">
-  	insert into friend(mname,fname)
-  		values(#{mname},#{fname})
+  	insert into friend(mname,fname,mid,fid)
+  		values(#{mname},#{fname},#{mid},#{fid})
   </insert>
   
   
- <update id="updateFriend" parameterType="com.yidu.lly.model.Friend" >
+<!--  <update id="updateFriend" parameterType="com.yidu.lly.model.Friend" >
  update user set user introduce=#{userintroduce} where username=#{username} and password=#{password}
-</update>
+</update> -->
 
   </mapper>

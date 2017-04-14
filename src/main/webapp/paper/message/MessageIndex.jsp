@@ -23,16 +23,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="css/indexuser.css" />
 		<script type="text/javascript" src="js/jquery-3.1.1.min.js" ></script>
-		<script type="text/javascript" src="js/login.js"></script>
 		<script src="js/bootstrap.min.js"></script>
   </head>
   
   <body>
-   		<a href="mail/showObjectUserList.do?userid=${OtherUser.uid}">私信</a><br/>
-   		<a href="">评论</a><br/>
-   		<a href="">投稿请求</a><br/>
-   		<a href="">喜欢和赞</a><br/>
-   		<a href="friend/showmyfans.do">关注</a><br/>
+  <jsp:include page="/paper/header.jsp"/> 
+   		<div><a href="mail/showObjectUserList.do"><span class="privateMail">0:私信</span></a><br/></div>
+   		<div><a href="">1:评论</a><br/></div>
+   		<div><a href="">2:投稿请求</a><br/></div>
+   		<div><a href="">3:喜欢和赞</a><br/></div>
+   		<div><a href="friend/showmyfans.do"><span class="myguanzhu">4：关注</span></a><br/></div>
   </body>
 
 </html>

@@ -33,10 +33,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <p>全部私信：</p>
+ 
+  	<jsp:include page="/paper/message/MessageIndex.jsp"></jsp:include>
+  	 <p>全部私信：</p>
 <c:forEach var="userlist" items="${userlist}">
 	  <div class="freitem">
-	    <div class="">名字：<a href="mail/showSession.do?userid=${userlist.uid}">${userlist.username}</a></div>
+	<%--   <input id="useruid" type="text" value="${user.uid}">
+	   <input id="userlistuid" type="text" value="${userlist.uid}"> --%>
+	    <div class="mail${userlist.uid}">名字：<a href="mail/showSession.do?userid=${userlist.uid}">${userlist.username}</a></div>
 		<div class="">头像：<a href="user/showOtheruser.do?userid=${userlist.uid}">${userlist.img}</a></div>
 		<div><a href="mail/delSession.do?userId1=${user.uid}&userId2=${userlist.uid}">删除会话</a></div>
 	  </div>

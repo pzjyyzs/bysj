@@ -23,7 +23,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="css/indexuser.css" />
 		<script type="text/javascript" src="js/jquery-3.1.1.min.js" ></script>
-		<script type="text/javascript" src="js/login.js"></script>
 		<script src="js/bootstrap.min.js"></script>
   </head>
   
@@ -31,10 +30,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		<jsp:include page="MessageIndex.jsp"/> 
    		
    		<c:forEach var="userlist" items="${userlist}">
-	  <div class="freitem">
 	    <div>${userlist.img}</div>
-	     <div class=""><a href="user/showOtheruser.do?userid=${userlist.uid}">${userlist.username}关注了你</a></div>
-	      </div>
+	     <div  class="">
+ 
+	     <span class="guanzhu${userlist.uid}">
+	     <a href="user/showOtheruser.do?userid=${userlist.uid}">${userlist.username}</a>
+	        关注了你
+	     </span>
+	             
+	     </div>
    </c:forEach>
    		
    		

@@ -13,4 +13,9 @@ public interface RemindMapper {
 	public Remind selectTopMailRemind(Map<String, Object> parms);
 	
 	public void updateMailRemind(Map<String, Object> parms);
+	
+	public List<Remind> selectGuanZhuRemind(int remindid);
+	
+	public void updateGuanzhuRemind(Map<String, Object> parms);
+	
 }

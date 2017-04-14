@@ -27,6 +27,9 @@
 <link rel="stylesheet" href="css/indexuser.css" />
 <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="js/message.js"></script>
+<script type="text/javascript" src="js/flushSsession.js" ></script>
+
+
 <script src="js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
@@ -38,8 +41,13 @@
 
 
 <body>
-<input id="userid" type="text" value="${OtherUser.uid} ">
-<input id="ChatObject" type="text" value="${OtherUser.username} ">
+<jsp:include page="/paper/header.jsp"/> 
+<input id="userid" type="hidden" value="${OtherUser.uid} ">
+<input id="ChatObject" type="hidden" value="${OtherUser.username} ">
+
+  <input id="myuseruid" type="text" value="${user.uid}">
+<input id="otheruseruid" type="text" value="${OtherUser.uid}">
+
 <a href="mail/showObjectUserList.do">返回私信页面</a>
 <p>和---${OtherUser.username}的会话</p>
 <div id="myDiv">

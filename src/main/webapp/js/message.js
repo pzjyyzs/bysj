@@ -1,7 +1,6 @@
 function startRequest(){
 	$.ajax({
 		url:"json/flushSession.do",
-		/*url:"user/findRegister.do",*/
 		type:"get",
 		async: true,
 		dataType:'json',

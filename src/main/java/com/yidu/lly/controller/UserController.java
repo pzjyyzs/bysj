@@ -17,11 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
-import com.yidu.lly.model.Article;
-import com.yidu.lly.model.Friend;
-import com.yidu.lly.model.User;
+
+
+import com.yidu.lly.model.*;
 import com.yidu.lly.service.ArticleService;
 import com.yidu.lly.service.FriendService;
+import com.yidu.lly.service.RemindService;
 import com.yidu.lly.service.UserService;
 
 @Controller
@@ -59,7 +60,18 @@ public class UserController {
 	public void setArticleService(ArticleService articleService) {
 		this.articleService = articleService;
 	}
+	
+	@Resource(name="remindServiceImpl")
+	private RemindService remindService;
+	
+	public RemindService getRemindService() {
+		return remindService;
+	}
 
+	public void setRemindService(RemindService remindService) {
+		this.remindService = remindService;
+	}
+	
 	//登录
 	@RequestMapping(value="/showuser.do", method = RequestMethod.POST)
 	public String toIndex(HttpServletRequest request,HttpSession session){
@@ -67,10 +79,12 @@ public class UserController {
 		userLogin.setUsername(request.getParameter("username"));
 		userLogin.setPassword(request.getParameter("password"));
 		
-	
 
 		if(this.userService.selectUser(userLogin)!=null){
 		  userLogin=this.userService.selectUser(userLogin);
+		
+		  
+		  
 		  List<Article> aList=this.articleService.showArticle();
 		  List<User> ulist=new ArrayList<User>();
 		  for(int i=0;i<aList.size();i++){
@@ -80,6 +94,9 @@ public class UserController {
           session.setAttribute("user", userLogin);
           session.setAttribute("alist", aList);
           session.setAttribute("ulist", ulist);
+       
+          
+         
       	  return "index";
 		}else{
 			System.out.println("can not get user");

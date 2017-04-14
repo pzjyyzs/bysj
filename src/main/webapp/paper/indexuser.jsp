@@ -74,6 +74,7 @@ function UpdateHtml(){
   </head>
   
   <body>
+  <jsp:include page="header.jsp"/> 
     姓名：${user.username}<br>
     性别：${user.sex}<br>
     关注：${myfriend}<br>
