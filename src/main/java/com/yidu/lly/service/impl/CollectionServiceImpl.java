@@ -18,4 +18,15 @@ public class CollectionServiceImpl implements CollectionService{
 		this.collectionMapper.addCollection(collection);	
 	}
 
+	@Override
+	public Collection showCollection(int cid) {
+		return this.collectionMapper.showCollection(cid);
+	}
+
+	@Override
+	public void updateCollection(Collection collection) {
+		this.collectionMapper.updateCollection(collection);
+		
+	}
+
 }

@@ -363,3 +363,21 @@ nav form .search-btn{
 	z-index: 2;
 	word-break: break-word;
 }
+.include-collection .add-collection-wrap{
+	float: left;
+    padding: 11px 11px 0 0;
+}
+.include-collection .add-collection {
+    padding-top: 7px;
+    width: 66px;
+    height: 66px;
+    text-align: center;
+    border: 2px dashed hsla(0,0%,55%,.6);
+    border-radius: 6px;
+    vertical-align: middle;
+    display: inline-block;
+}
+.include-collection .add-collection div{
+	font-size: 13px;
+    color: #787878;
+}
