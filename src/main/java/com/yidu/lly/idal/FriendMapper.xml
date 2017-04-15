@@ -20,8 +20,7 @@
   delete from friend where mid=#{mid} and fid=#{fid}
       
 </delete> 
-  
-  
+
  <select id="selectmyFriend" parameterType="com.yidu.lly.model.Friend" resultType="com.yidu.lly.model.Friend">
   	select * from friend where mid=#{mid} and fid=#{fid}
   </select>

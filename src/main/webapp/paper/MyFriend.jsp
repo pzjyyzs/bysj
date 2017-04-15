@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <jsp:include page="header.jsp"/> 
+<div><jsp:include page="header.jsp"/> </div>
   ${user.username}的读友圈：<br>
          已关注:<br>
   <br>

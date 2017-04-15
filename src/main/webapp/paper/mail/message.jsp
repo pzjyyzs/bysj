@@ -41,7 +41,7 @@
 
 
 <body>
-<jsp:include page="/paper/header.jsp"/> 
+<div><jsp:include page="/paper/header.jsp"/> </div>
 <input id="userid" type="hidden" value="${OtherUser.uid} ">
 <input id="ChatObject" type="hidden" value="${OtherUser.username} ">
 

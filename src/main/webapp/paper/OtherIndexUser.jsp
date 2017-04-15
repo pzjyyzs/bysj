@@ -74,7 +74,7 @@ function UpdateHtml(){
   </head>
   
   <body>
-<jsp:include page="header.jsp"/> 
+<jsp:include page="header.jsp"/>
 
   <input class="myguanzhuId" type="text" value="${user.uid}">
    <input class="otherguanzhuId" type="text" value="${OtherUser.uid}">

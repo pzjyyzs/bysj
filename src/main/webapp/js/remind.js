@@ -49,7 +49,7 @@ function startRequest(){
 }
 
 $(document).ready(function () {	
-	setInterval("startRequest()",1000);
+	setInterval("startRequest()",100);
 	});
 
 

@@ -29,7 +29,7 @@ function s(){
 
 $(document).ready(function () {	
 	s();
-	setInterval("start()",1000);
+	setInterval("start()",100);
 	});
 
 

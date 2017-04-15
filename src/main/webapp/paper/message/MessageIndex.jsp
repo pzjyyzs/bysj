@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <jsp:include page="/paper/header.jsp"/> 
+  <div><jsp:include page="/paper/header.jsp"/></div>
    		<div><a href="mail/showObjectUserList.do"><span class="privateMail">0:私信</span></a><br/></div>
    		<div><a href="">1:评论</a><br/></div>
    		<div><a href="">2:投稿请求</a><br/></div>

@@ -1,0 +1,117 @@
+*{
+	box-sizing: border-box;
+}
+html{
+ 	top: 0;
+ 	left: 0;
+ 	width: 100%;
+ 	height: 100%;	
+}
+body{
+	font-size: 17px;
+	color: #000;
+	width: 100%;
+ 	height: 100%;	
+}
+
+a{
+	text-decoration: none;
+	cursor: pointer;
+}
+a:hover{
+	text-decoration: none;
+}
+form{
+	margin: 0 0 20px;
+}
+ul,ol{
+	list-style-type: none;
+}
+.navbar{
+	min-height: 56px;
+	border: 1px solid #f0f0f0;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1030;
+	width: 100%;
+	background-color: #FFFFFF;
+}
+.navbar .width-limit{
+	min-width: 768px;
+	max-width: 1440px;
+	margin: 0 auto;
+	height: 58px;
+}
+.navbar .width-limit .logo{
+	float: left;
+	height: 56px;
+	padding: 1px 10px 15px 20px;
+	cursor: pointer;
+}
+.navbar .write-btn{
+	float: right;
+	width: 85px;
+	height: 38px;
+	line-height: 24px;
+	margin: 9px 15px 0;
+	border-radius: 4px;
+	font-size: 15px;
+	color: #fff;
+	background-color: #ea6f5a;
+	text-align: center;
+}
+.navbar .user{
+	float: right;
+	height: 100%;
+}
+.navbar .user .avatar{
+	width: 40px;
+	height: 40px;
+	margin: 8px 20px;
+	cursor: pointer;
+}
+.navbar .user .avatar img{
+	width: 100%;
+	height: 100%;
+	border: 1px solid #ddd;
+	border-radius: 50%;
+}
+nav .navbar-nav li {
+    margin-right: 10px;
+}
+nav .nav li a{
+	height: 56px;
+	line-height: 26px;
+	padding: 15px;
+	color: #333;
+}
+nav form{
+	position: relative;
+	top: 9px;
+}
+nav form .search-input{
+	padding: 0 40px 0 20px;
+	width: 160px;
+	height: 38px;
+	font-size: 14px;
+	border: 1px solid #eee;
+	border-radius: 40px;
+	background: #eee;
+	transition: width .5s;
+	-webkit-transition: width .5s;
+}
+nav form .search-btn{
+	position: absolute;
+	top: 10px;
+	right: 5px;
+	width: 30px;
+	height: 30px !important;
+	line-height: normal !important;
+	padding:0 !important;
+	color: #969696 !important;
+	text-align: center;
+}
+.container{
+	width: 960px;
+}
