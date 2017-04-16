@@ -1,0 +1,174 @@
+*{
+	box-sizing: border-box;
+}
+html{
+ 	top: 0;
+ 	left: 0;
+ 	width: 100%;
+ 	height: 100%;	
+}
+body{
+	text-align:center;
+	font-size: 17px;
+	color: #fff;
+	width: 100%;
+ 	height: 100%;	
+}
+
+.container{
+	width: 960px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    
+}
+.container:before {
+    content: " ";
+    display: table;
+    box-sizing: border-box;
+}
+.row {
+    padding-top: 0px;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.aside {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    margin: 86px 0 0;
+    padding: 0 0 30px;
+    width: 280px;
+    overflow: auto;
+    border-right: 1px solid #f0f0f0;
+     
+}
+.js-subscription-list{
+	text-align:left; 
+}
+.aside .change-type {
+    margin-left: 15px;
+    font-size: 15px;
+}
+a {
+    cursor: pointer;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+a, body {
+    color: #333;
+}
+li {
+    line-height: 20px;
+    list-style-type:none;
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+.img{
+	vertical-align: middle;
+}
+.aside .ic-filter {
+    margin-left: 5px;
+    color: #c8c8c8;
+}
+.aside .iconfont {
+    font-family: iconfont!important;
+    font-size: inherit;
+    font-style: normal;
+    font-weight: 400!important;
+
+}
+.aside .dropdown-menu {
+    top: 23px;
+    left: 20px;
+    min-width: 130px;
+    text-align: center;
+}
+.aside ul {
+    margin-top: 0px;
+    list-style: none;
+    border-top: 1px solid #f0f0f0;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ddd;
+    border-radius: 10%;
+    vertical-align: middle;
+}
+.aside li.active .wrap {
+    background-color: #f0f0f0;
+    border-radius: 4px 0 0 4px;
+}
+.aside li:first-child .wrap {
+    border-radius: 0 0 0 4px!important;
+}
+.aside .wrap {
+	width: 260;
+    padding: 10px 13px;
+    display: block;
+}
+.aside .avatar{
+    width: 40px;
+    height: 40px;
+    margin-right: 4px;
+    display: inline-block;
+}
+.avatar img {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+}
+.aside .avatar-collection {
+    width: 40px;
+    height: 40px;
+    margin-right: 4px;
+    display: inline-block;
+}
+.aside .avatar-collection {
+    width: 40px;
+    height: 40px;
+    margin-right: 4px;
+    display: inline-block;
+}
+
+.aside .name {
+    font-size: 14px;
+    vertical-align: middle;
+    display: inline-block;
+}
+.aside .count {
+    float: right;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #969696;
+}
+.avatar-collection img {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ddd;
+    border-radius: 10%;
+    vertical-align: middle;
+}
+.note-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.find-nothing {
+    margin-top: 260px; 
+    margin-left: 300px;
+    text-align: center;
+}
+ .find-nothing img {
+    width: 100px;
+    border: 0;
+    vertical-align: middle;
+}
+
+    
