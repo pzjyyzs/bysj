@@ -6,8 +6,15 @@ public class Friend {
 	    private String fname;*/
 	    private Integer mid;
 	    private Integer fid;
+	    private String creattime;
 	    
 	    
+		public String getCreattime() {
+			return creattime;
+		}
+		public void setCreattime(String creattime) {
+			this.creattime = creattime;
+		}
 		public Integer getMid() {
 			return mid;
 		}

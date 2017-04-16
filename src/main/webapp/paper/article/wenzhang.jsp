@@ -68,12 +68,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="like">
 					<div class="btn like-group">
 						<div class="btn-like">
-							<a>
+							<span style="${sessionScope.str1}"><a href="like/addLike.do?articleaid=${sessionScope.article.aid}&useruid=${sessionScope.user.uid}">
 								<i class="glyphicon glyphicon-heart">喜欢</i>
 							</a>
+							</span>
+								<span style="${sessionScope.str2}"><a href="like/delLike.do?articleaid=${sessionScope.article.aid}&useruid=${sessionScope.user.uid}">
+								<i class="glyphicon glyphicon-heart">取消喜欢</i>
+							</a>
+							</span>
+							
 						</div>
 						<div class="modal-wrap">
-							<a>0</a>
+							<a>
+							${sessionScope.count}
+							</a>
 						</div>
 					</div>
 				</div>

@@ -25,11 +25,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import com.yidu.lly.model.Article;
-import com.yidu.lly.model.Comment;
-import com.yidu.lly.model.User;
+import com.yidu.lly.model.*;
 import com.yidu.lly.service.ArticleService;
 import com.yidu.lly.service.CommentService;
+import com.yidu.lly.service.LikeService;
 import com.yidu.lly.service.UserService;
 
 
@@ -68,6 +67,23 @@ public class ArticleController {
 		this.userService = userService;
 	}
 
+	
+	
+	@Resource(name="likeServiceImpl")
+	private LikeService likeService;
+	
+
+	public LikeService getLikeService() {
+		return likeService;
+	}
+
+	public void setLikeService(LikeService likeService) {
+		this.likeService = likeService;
+	}
+	
+	
+	
+	
 	//发表文章
 	@RequestMapping(value="/addarticle.do", method = RequestMethod.POST)
 	public@ResponseBody Map<String,Object> addArticle(HttpServletRequest request,HttpSession session){
@@ -132,6 +148,24 @@ public class ArticleController {
 		List<Comment> comlist=this.commentService.showComent(aid);
 		List<User> usercomlist=new ArrayList<User>();
 		User auser=this.userService.selectUser(article.getUid());
+		
+		User user=(User)session.getAttribute("user");
+		
+		Like like=new Like();
+		like.setUserid(user.getUid());
+		like.setArticleid(aid);
+		
+		String str1="display:none";
+		String str2="";
+		
+		if (null==this.likeService.selectLike(like)) {
+			str1="";
+			str2="display:none";
+		}
+		
+		Integer count=this.likeService.selectountLike(like);
+		
+		
 		for(int i=0;i<comlist.size();i++){
 			User comuser=this.userService.selectUser(comlist.get(i).getComuserid());
 			usercomlist.add(comuser);
@@ -141,6 +175,10 @@ public class ArticleController {
 		session.setAttribute("auser", auser);
 		session.setAttribute("comlist", comlist);
 		session.setAttribute("usercomlist", usercomlist);
+		session.setAttribute("count", count);
+		session.setAttribute("str2", str2);
+		session.setAttribute("str1", str1);
+		
 		return "article/wenzhang";
 	}
 	
