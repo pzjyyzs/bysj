@@ -24,5 +24,11 @@ public class  CommentServiceImpl implements CommentService  {
 	public List<Comment> showComent(int comarid) {
 		
 		return this.commentMapper.showComment(comarid);
+	}
+
+	@Override
+	public Integer selectountComent(int comarid) {
+		// TODO Auto-generated method stub
+		return this.commentMapper.selectountComent(comarid);
 	};
 }

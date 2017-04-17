@@ -9,6 +9,7 @@ public interface CommentMapper {
 	
 	public List<Comment> showComment(int comarid);
 	
+	public Integer selectountComent(int comarid);
 	
 
 }

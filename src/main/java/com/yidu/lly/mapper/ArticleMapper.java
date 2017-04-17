@@ -10,4 +10,6 @@ public interface ArticleMapper {
 	public List<Article> showArticle();
 	
 	public Article showArticleId(int aid);
+	
+	public List<Article> selectArticle(int uid);
 }

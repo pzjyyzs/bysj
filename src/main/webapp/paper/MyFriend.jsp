@@ -47,44 +47,43 @@
    			
   </body> --%>
 <body>
-<jsp:include page="header.jsp"/>
-	<div class="main">
-		<div class="container">
-			<div class="row">
-				<div class="aside">
-					<ul class="js-subscription-list">
-						<li class="active"><a href="#/timeline" class="wrap">
-								<div class="avatar">
-									<img src="img/jianyouquan.png" style="border: none;">
-								</div>
-								<div class="name">简友圈</div>
-						</a></li>
+	<jsp:include page="header.jsp" />
 
-						<c:forEach var="userlist" items="${userlist}">
-						<li class=""><a href="user/showOtheruser.do?userid=${userlist.uid}" class="wrap">
+	<div class="container">
+		<div class="row">
+			<div class="aside">
+				<ul class="js-subscription-list">
+					<li class="active"><a href="#/timeline" class="wrap">
+							<div class="avatar">
+								<img src="img/jianyouquan.png" style="border: none;">
+							</div>
+							<div class="name">读友圈</div>
+					</a></li>
+
+					<c:forEach var="userlist" items="${userlist}">
+						<li class=""><a
+							href="user/showOtheruser.do?userid=${userlist.uid}" class="wrap">
 								<div class="avatar-collection">
 									<img src="${userlist.img}">
 								</div>
-								<div class="name">${userlist.username}</div> 
+								<div class="name">${userlist.username}</div>
 						</a></li>
-                 </c:forEach>
-					</ul>
-				</div>
+					</c:forEach>
+				</ul>
 			</div>
-			<div class="right">
-				<div>
-					<ul class="note-list">
 
-					</ul>
-					<div class="find-nothing">
-						<img src="img/nonono.png">
-						<div>这里还木有内容哦~</div>
-					</div>
-				</div>
-			</div>
+
+
+
+
+
 
 		</div>
-	</div>
+
+
+
+
+
 	</div>
 </body>
 

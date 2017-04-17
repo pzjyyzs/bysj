@@ -30,4 +30,10 @@ public class ArticleServiceImpl implements ArticleService{
 		return this.articleMapper.showArticleId(aid);
 	}
 
+	@Override
+	public List<Article> selectArticle(int uid) {
+		// TODO Auto-generated method stub
+		return this.articleMapper.selectArticle(uid);
+	}
+
 }

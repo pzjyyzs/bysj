@@ -32,7 +32,7 @@
     width:422px;
     height:380px;
     background:#ccc;
-  /*   border:3px solid #333; */
+    border:3px solid #333;
     text-align: center;
     } 
 .container{
@@ -251,7 +251,58 @@ person .aside .user-dynamic {
 padding-bottom: 6px;
 }
 
+.person .main .main-top .follow, .person .main .main-top .follow-cancel, .person .main .main-top .follow-each, .person .main .main-top .following {
+    padding: 8px 0;
+    width: 100px;
 }
+.person .main .main-top .btn {
+    float: right;
+    margin: 23px 0 23px 16px;
+    font-size: 15px;
+}
+.btn-hollow {
+    border: 1px solid rgba(59,194,29,.7);
+    color: #42c02e!important;
+}
+.person .aside .list {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    list-style: none;
+    border-bottom: 1px solid #f0f0f0;
+    clear: both;
+}
+ul {
+    padding-left: 0;
+}
+_type.scss:150
+ol, ul {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+.person .aside .list li a {
+    display: inline-block;
+}
+.avatar-collection img {
+    width: 80px;
+    height: 80px;
+    border: 1px solid #ddd;
+    border-radius: 10%;
+}
+li {
+    line-height: 20px;
+}
+.person .aside .list li a {
+    display: inline-block;
+}
+.person .aside .name {
+    position: relative;
+    max-width: 236px;
+    vertical-align: middle;
+    top: 1px;
+    font-size: 14px;
+    color: #333;
+}
+
 
 
     

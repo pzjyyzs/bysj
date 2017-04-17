@@ -10,11 +10,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
 	
 		<script type="text/javascript" src="js/remind.js" ></script>
+		<link rel="stylesheet" href="css/header.css" />
 </head>
 
 
 <body>
-    	<link rel="stylesheet" href="css/header.css" />
+    	
 <input id="remindid" type="hidden" value="${user.uid}">
 		<!-- 	全局顶部导航-->
 		<nav class="navbar">

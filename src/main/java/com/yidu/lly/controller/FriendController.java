@@ -22,14 +22,38 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 
-import com.yidu.lly.model.Friend;
-import com.yidu.lly.model.User;
+
+
+
+
+import com.yidu.lly.model.*;
+import com.yidu.lly.service.ArticleService;
+import com.yidu.lly.service.CommentService;
 import com.yidu.lly.service.FriendService;
+import com.yidu.lly.service.LikeService;
 import com.yidu.lly.service.UserService;
 
 @Controller
 @RequestMapping("/friend")
 public class FriendController {
+	@Resource(name="articleServiceImpl")
+	private ArticleService articleService;
+
+	public ArticleService getArticleService() {
+		return articleService;
+	}
+
+	@Resource(name="likeServiceImpl")
+	private LikeService likeService;
+	
+
+	public LikeService getLikeService() {
+		return likeService;
+	}
+
+	public void setLikeService(LikeService likeService) {
+		this.likeService = likeService;
+	}
 	
 	@Resource(name="userServiceImpl")
 	private UserService userService;
@@ -52,12 +76,25 @@ public class FriendController {
 	public void setFriendService(FriendService friendService) {
 		this.friendService = friendService;
 	}
+	@Resource(name="commentServiceImpl")
+	private CommentService commentService;
+
+	public CommentService getCommentService() {
+		return commentService;
+	}
+
+	public void setCommentService(CommentService commentService) {
+		this.commentService = commentService;
+	}
 	
 	//显示好友列表
+	//显示读友圈文章列表
 	@RequestMapping(value="/showmyfriend.do", method = RequestMethod.GET)
 	public String Tomyfriend(HttpServletRequest request,HttpSession session){
+	
 		User user=(User) session.getAttribute("user");
 		
+		//显示好友列表
 		List<Friend> Friendlist =this.friendService.selectFriend(user);
 		
 		List<User>  Userlist=new ArrayList<User>();
@@ -65,10 +102,47 @@ public class FriendController {
 		for (Friend friend : Friendlist) {    
 		    Userlist.add( this.userService.selectUser(friend.getMid()));
 		}  
-		
 		session.setAttribute("userlist", Userlist);
 		
-		return "MyFriend";
+		//显示读友圈文章列表
+		
+		List<Articleinfomation> articlelist=new ArrayList<Articleinfomation>();
+		
+		for (User uitem: Userlist) {
+			List<Article> userArticlelist=this.articleService.selectArticle(uitem.getUid());
+			for(Article article:userArticlelist){
+				Articleinfomation articleinfomation=new Articleinfomation();
+				articleinfomation.setArticlename(article.getArticlename());
+				articleinfomation.setArticlecontent(article.getArticlecontent());
+				articleinfomation.setArticletime(article.getArticletime());
+				articleinfomation.setUsername(uitem.getUsername());
+				articleinfomation.setImg(uitem.getImg());
+				
+				articleinfomation.setComcount(commentService.selectountComent(article.getAid()));
+				
+				Like like=new Like();
+				like.setArticleid(article.getAid());
+				articleinfomation.setLikecount(likeService.selectountLike(like));
+		    	
+				articleinfomation.setUid(article.getUid());
+				
+				articlelist.add(articleinfomation);
+		    	
+		    }
+		}
+		
+		session.setAttribute("articlelist", articlelist);
+		
+	/*	for(Article article:articlelist){
+			System.out.println(article.getArticlename());
+		}*/
+		
+		if(this.friendService.selectFriend(user).size()==0){
+			return "none";
+		}else{
+			
+		return "article/FriendAtList";
+		}
 	}
 	//加关注
 	@RequestMapping(value="/addfriend.do", method = RequestMethod.GET)
