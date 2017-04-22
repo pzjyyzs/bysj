@@ -12,4 +12,14 @@
 	 update collection set collectionname=#{collectionname},collectionintroduce=#{collectionintroduce},
 	 	collectionimg=#{collectionimg} where cid=#{cid}
 	</update>
+	
+	<insert id="addColfollow" parameterType="com.yidu.lly.model.Colfollow">
+		insert into colfollow(colfid,uid,cid) value(#{colfid},#{uid},#{cid})
+	</insert>
+	<select id="checkColfollow" parameterType="int" resultType="com.yidu.lly.model.Colfollow">
+		select * from colfollow where uid=#{0} and cid=#{1}
+	</select>
+	<delete id="delColfollow" parameterType="com.yidu.lly.model.Colfollow">
+	  delete from colfollow where uid=#{uid} and cid=#{cid}
+	</delete>
 </mapper>

@@ -1,12 +1,23 @@
 $(document).ready(function(){
 	$("#follow").click(function(){
+		alert("haha");
 		$.ajax({
 			url:"collection/collect.do",
 			type:"post",
 			dataType:"json",
+			data:{
+				colfo:$("#colfo").val()
+			},
 			success:function(data){
-				$("#fosp")
+				alert(data.result);
+				if(data.result==0){
+					$("#colfollow").text("取消收藏");
+					$("#colfo").val("1");
+				}else{
+					$("#colfollow").text("收藏");
+					$("#colfo").val("0");
+				}
 			}
-		})
+		});
 	});
 });
