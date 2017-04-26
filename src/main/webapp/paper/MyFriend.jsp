@@ -53,7 +53,7 @@
 		<div class="row">
 			<div class="aside">
 				<ul class="js-subscription-list">
-					<li class="active"><a href="#/timeline" class="wrap">
+					<li class="active"><a class="wrap">
 							<div class="avatar">
 								<img src="img/jianyouquan.png" style="border: none;">
 							</div>

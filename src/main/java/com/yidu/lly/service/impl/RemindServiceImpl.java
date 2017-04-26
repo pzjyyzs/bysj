@@ -71,6 +71,18 @@ public class RemindServiceImpl implements RemindService {
 		
 		
 	}
+
+	@Override
+	public List<Remind> selectLikeRemind() {
+		// TODO Auto-generated method stub
+		return RemindMapper.selectLikeRemind();
+	}
+
+	@Override
+	public List<Remind> selectComRemind() {
+		// TODO Auto-generated method stub
+		return RemindMapper.selectComRemind();
+	}
 	
 
 }

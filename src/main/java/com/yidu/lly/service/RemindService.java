@@ -15,5 +15,8 @@ public interface RemindService {
 	public void updateMailRemind(int useruid,int otheruid);
 	public void updateGuanzhuRemind(int myguanzhuId,int otherguanzhuId);
 	
+	public List<Remind> selectLikeRemind();
+	public List<Remind> selectComRemind();
+	
 	
 }

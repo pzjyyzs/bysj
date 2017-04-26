@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="row-fluid normal-mode active">
 					<div class="span2 aside">
 						<div class="home-wrap">
-							<a href="/" class="go-home">
+							<a href="paper/index.jsp" class="go-home">
 								<i class="glyphicon glyglyphicon-home"></i>
 								<span>回首页</span>
 							</a>

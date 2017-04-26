@@ -19,15 +19,44 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 
+
+
+
 import com.yidu.lly.model.*;
 import com.yidu.lly.service.ArticleService;
+import com.yidu.lly.service.CommentService;
 import com.yidu.lly.service.FriendService;
+import com.yidu.lly.service.LikeService;
 import com.yidu.lly.service.RemindService;
 import com.yidu.lly.service.UserService;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
+	
+	@Resource(name="commentServiceImpl")
+	private CommentService commentService;
+	
+	public CommentService getCommentService() {
+		return commentService;
+	}
+
+	public void setCommentService(CommentService commentService) {
+		this.commentService = commentService;
+	}
+	
+	@Resource(name="likeServiceImpl")
+	private LikeService likeService;
+	
+
+	public LikeService getLikeService() {
+		return likeService;
+	}
+
+	public void setLikeService(LikeService likeService) {
+		this.likeService = likeService;
+	}
+	
 	@Resource(name="userServiceImpl")
 	private UserService userService;
 	
@@ -161,9 +190,43 @@ public class UserController {
 			   myfans=myfans+1;
 			}  
 		   
+		   
 		   session.setAttribute("myfriend",myfriend);
 		   session.setAttribute("myfans",myfans);
 		   
+	//我的文章内容：
+		 
+		   List<Article> myArticleList=this.articleService.selectArticle(user.getUid());
+		   		   
+		   List<Articleinfomation> MyArticleList=new ArrayList<Articleinfomation>();
+		   
+		   
+		   int articlecount=0;
+		   
+		   for(Article article:myArticleList){
+			   articlecount++;
+			   Articleinfomation articleinfomation=new Articleinfomation();
+			   articleinfomation.setArticlename(article.getArticlename());
+				articleinfomation.setArticlecontent(article.getArticlecontent());
+				articleinfomation.setArticletime(article.getArticletime());
+				articleinfomation.setUsername(user.getUsername());
+				articleinfomation.setImg(user.getImg());
+				articleinfomation.setUid(user.getUid());
+				articleinfomation.setAimgaddress(article.getAimgaddress());
+				articleinfomation.setArticleread(article.getArticleread());
+				articleinfomation.setComcount(commentService.selectountComent(article.getAid()));
+				
+				articleinfomation.setAid(article.getAid());
+				
+				Like like=new Like();
+				like.setArticleid(article.getAid());
+				articleinfomation.setLikecount(likeService.selectountLike(like));
+		  
+				MyArticleList.add(articleinfomation);
+		   }
+		   
+		   session.setAttribute("MyArticleList",MyArticleList);
+		   session.setAttribute("articlecount",articlecount);
 		   
       		return "indexuser";
 	}
@@ -183,8 +246,14 @@ public class UserController {
 	@RequestMapping(value="/showOtheruser.do", method = RequestMethod.GET)
 	public String ToOtherUser(HttpServletRequest request,HttpSession session){
 		
+
 		        String str=request.getParameter("userid");
 			    int userid = Integer.parseInt(str);
+			    
+			    User myuser=(User)session.getAttribute("user");
+			    if(userid==myuser.getUid()){
+			    	return "redirect:/user/showmyuser.do?";
+			    }
 			    
 			    User OtherUser=this.userService.selectUser(userid);
 			    session.setAttribute("OtherUser", OtherUser);
@@ -227,6 +296,40 @@ public class UserController {
 						}
 					session.setAttribute("str1", str1);
 					session.setAttribute("str2", str2);
+					
+					
+			//显示文章内容
+					 List<Article> myArticleList=this.articleService.selectArticle(OtherUser.getUid());
+			   		   
+					   List<Articleinfomation> MyArticleList=new ArrayList<Articleinfomation>();
+					   
+					   
+					   int articlecount=0;
+					   
+					   for(Article article:myArticleList){
+						   articlecount++;
+						   Articleinfomation articleinfomation=new Articleinfomation();
+						   articleinfomation.setArticlename(article.getArticlename());
+							articleinfomation.setArticlecontent(article.getArticlecontent());
+							articleinfomation.setArticletime(article.getArticletime());
+							articleinfomation.setUsername(OtherUser.getUsername());
+							articleinfomation.setImg(OtherUser.getImg());
+							articleinfomation.setUid(OtherUser.getUid());
+							articleinfomation.setAimgaddress(article.getAimgaddress());
+							articleinfomation.setArticleread(article.getArticleread());
+							articleinfomation.setComcount(commentService.selectountComent(article.getAid()));
+							
+							articleinfomation.setAid(article.getAid());
+							
+							Like like=new Like();
+							like.setArticleid(article.getAid());
+							articleinfomation.setLikecount(likeService.selectountLike(like));
+					  
+							MyArticleList.add(articleinfomation);
+					   }
+					   
+					   session.setAttribute("MyArticleList",MyArticleList);
+					   session.setAttribute("articlecount",articlecount);
 					
 					return "OtherIndexUser";
 	}

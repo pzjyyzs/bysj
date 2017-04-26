@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	
 	$("#js-sign-up-btn").click(function(){
 		$("#js-sign-in-btn").removeClass("active");
 		$("#js-sign-up-btn").attr("class","active");

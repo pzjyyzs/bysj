@@ -2,6 +2,7 @@ package com.yidu.lly.mapper;
 
 import java.util.List;
 
+import com.yidu.lly.model.ComReply;
 import com.yidu.lly.model.Comment;
 
 public interface CommentMapper {
@@ -11,5 +12,8 @@ public interface CommentMapper {
 	
 	public Integer selectountComent(int comarid);
 	
+	public void insertComReply(ComReply comreply);
+	
+	public  List<ComReply> selectReplyComent();
 
 }

@@ -33,6 +33,12 @@
  <update id="updateGuanzhuRemind" parameterType="java.util.Map" >
    update remind set mark=1 where myid=#{myguanzhuId} and otherid=#{otherguanzhuId} and type=4
 </update>
+   <select id="selectLikeRemind"  resultMap="remindMailList">
+   	select * from remind where   type=3 
+  </select>
   
+   <select id="selectComRemind" resultMap="remindMailList">
+   	select * from remind where   type=1 
+  </select>
   
   </mapper>

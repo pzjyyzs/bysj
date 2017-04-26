@@ -25,7 +25,7 @@ function s(){
 			"otherguanzhuId":$(".otherguanzhuId").val(),
 			},
 	     }
-	)};
+	);}
 
 $(document).ready(function () {	
 	s();

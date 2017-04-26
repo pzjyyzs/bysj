@@ -27,14 +27,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript" src="js/message.js" ></script>
 		<script src="js/bootstrap.min.js"></script>
 
-<script type="text/javascript">
-</script>
+
 
   </head>
   
   <body>
 
-		
+	<%-- 	
 	<c:forEach  var="OurSession"  items="${OurSession}">
 	 <c:if test="${OtherUser.uid==OurSession.sendid}">
        ${OtherUser.username}:
@@ -44,8 +43,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </c:if> 
 		<div>${OurSession.cotent}</div>
 		<div>${OurSession.creattime}</div>
-   </c:forEach>
+   </c:forEach> --%>
        
+   				<div  class="message-show">
+				<ul id="myDiv" class="message-list">
+					<c:forEach var="OurSession" items="${OurSession}">
+						<c:if test="${OtherUser.uid==OurSession.sendid}">
+ 
+					<li class="message-l">
+						<a class="avatar"><img src="${OtherUser.img}"></a>
+						<div><span class="content">${OurSession.cotent}</span></div> 
+						<span class="time">${OurSession.creattime}</span>
+					</li>
+                             </c:if>
+                             
+                             
+                             
+                             <c:if test="${user.uid==OurSession.sendid}">
+					<li class="message-r">
+						<a  class="avatar"><img src="${user.img}"></a>
+						<div class="wdcontent"><span class="content">${OurSession.cotent}</span></div> 
+						<span class="time">${OurSession.creattime}</span>
+					</li>
+						</c:if>
+				</c:forEach>
+				</ul>
+			</div>
+			
+
    				
    			
    			

@@ -1,0 +1,5 @@
+function readlike(){
+	alert("choushabi");
+	}
+
+

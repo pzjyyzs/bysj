@@ -3,6 +3,7 @@ package com.yidu.lly.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -15,9 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yidu.lly.model.Article;
-import com.yidu.lly.model.Comment;
-import com.yidu.lly.model.User;
+import com.yidu.lly.model.*;
 import com.yidu.lly.service.CommentService;
 
 @Controller
@@ -54,9 +53,29 @@ public class CommentController {
 		
 		return map;
 	}
-	//显示评论
+	//回复评论
 
+	@RequestMapping(value="/replycomment.do",method = RequestMethod.POST)
+	public  String replycomment(HttpServletRequest request,HttpSession session){
+		String articleid=request.getParameter("articleid");
+		String replycotent=request.getParameter("replycomment");
+		String Comid=request.getParameter("commentcomid");
+		String Replyuid=request.getParameter("useruid");
 		
+		Integer comid=Integer.parseInt(Comid);
+		Integer replyuid=Integer.parseInt(Replyuid);
+		
+		ComReply comreply=new ComReply();
+		comreply.setComid(comid);
+		comreply.setReplyuid(replyuid);
+		comreply.setReplycotent(replycotent);
+		
+		this.commentService.insertComReply(comreply);
+		
+		  return "redirect:/article/showArticleId.do?aid="+articleid+"";
+		
+	}
+
 	
 
 }

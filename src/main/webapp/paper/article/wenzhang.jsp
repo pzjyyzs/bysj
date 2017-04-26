@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"  %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 String path = request.getContextPath();
@@ -29,11 +29,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="js/showdown.min.js"></script>
 		<script type="text/javascript" src="js/wenzhang.js"></script>
   </head>
-  
-  <body>
+<script type="text/JavaScript"> 
+ </script>
+  <body onscroll="doScroll()" onload="scrollback()">
+ 
 		<!-- 	全局顶部导航-->
 		<div><jsp:include page="/paper/header.jsp"/> </div>
-
 		<div class="note">
 			<div class="article">
 				<div class="nierong-information">
@@ -46,17 +47,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</a>
 						<div class="info">
 							<span class="tag">作者</span>
-							<span class="name"><a href="#"><c:out value="${sessionScope.auser.username }"></c:out></a></span>
+							<span class="name"><a href="user/showOtheruser.do?userid=${sessionScope.auser.uid}"><c:out value="${sessionScope.auser.username }"></c:out></a></span>
 							<!-- 关注用户按钮 -->
-							<a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+							<!-- <a class="btn btn-success follow"><i class="iconfont ic-follow"></i>
+							</a> -->
 							<!-- 文章数据信息 -->
 							<div class="meta">
 								<!-- 如果文章更新时间大于发布时间，那么使用 tooltip 显示更新时间 -->
 								<span class="publish-time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="最后编辑于 2017.04.07 20:42">2017.04.07 20:26*</span>
 					
 								<span class="views-count">阅读 <c:out value="${sessionScope.article.articleread }"></c:out></span>
-								<span class="comments-count">评论 24</span>
-								<span class="likes-count">喜欢 22</span>
+								<span class="comments-count">评论${comcount}</span>
+								<span class="likes-count">喜欢 ${sessionScope.likecount}</span>
 						</div>
 						<!-- 如果是当前作者，加入编辑按钮 -->
 					</div>
@@ -80,7 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 						<div class="modal-wrap">
 							<a>
-							${sessionScope.count}
+							${sessionScope.likecount}
 							</a>
 						</div>
 					</div>
@@ -94,7 +96,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</form>
 				</div>
 				<div id="comment-list" class="comment-list">
+				<%
+				int markid=1;
+				 %>
 				<c:forEach items="${sessionScope.comlist }" var="comment">
+				<%
+				String myreplycomform="myreplycomform"+markid;
+				 %>
 					<div>
 						<div class="author">
 							<a target="_blank" class="avatar">
@@ -118,11 +126,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 						<div class="comment-wrap">
 							<p>${comment.comtext }</p>
+							
+							
+							<c:forEach items="${sessionScope.comreplylist}" var="comreply">
+							
+							
+								<c:if test="${comreply.comid == comment.comid }">
+								     ${comreply.replyuname}<br/>
+									${comreply.replycotent}<br/>
+									${comreply.replytime}<br/>
+								   
+								
+							</c:if>
+							</c:forEach>
+
 							<div class="tool-group">
 								<a>
 									<i class="glyphicon glyphicon-comment"></i>
-									<span>回复</span>
-								</a>
+			
+									<span   onclick="aaaaa(this.title)"  title="<%=myreplycomform%>">回复</span>
+		
+									</a>
+							
+								<form  style="display:none"  class="<%=myreplycomform%>" action="comment/replycomment.do" method="post">
+                                   
+                                    <input class="commentcomid" name="commentcomid" type="hidden" value="${comment.comid}">
+                 
+									 <input name="useruid" type="hidden" value="${user.uid}">
+									  <input name="articleid" type="hidden" value="${sessionScope.article.aid}">
+				
+                               <textarea  name='replycomment' cols="30" rows="4" > </textarea>      
+                
+                                <input type="submit" />
+
+                               </form>
+								<% markid++; %>
+								
 							</div>
 						</div>
 					</div>
@@ -137,7 +176,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="include-collection">
 					<a href="" target="_blank" class="item">
 						<img src="img/enhanced-buzz-wide-16461-1372163238-8.jpg">
-						<div class="name">生活家</div>
+						<div class="">生活家</div>
 					</a>
 				</div>
 			</div>

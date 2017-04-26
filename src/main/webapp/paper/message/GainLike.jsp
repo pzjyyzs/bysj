@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-   		<jsp:include page="MessageIndex.jsp"/> 
+   		 <jsp:include page="MessageIndex.jsp"/>
    		
    		<%-- <c:forEach var="userlist" items="${userlist}">
 	    <div>${userlist.img}</div>
@@ -40,22 +40,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	             
 	     </div>
    </c:forEach> --%>
-   		
-   		<div class="userlistbb">
-			<div class="menu">我的粉丝</div>
-			<ul class="like-list">
-				<c:forEach var="userlist" items="${userlist}">
-		      <li class="">
-					<a  class="avatar"><img src="${userlist.img}"></a>
-					<div class="info"><a href="user/showOtheruser.do?userid=${userlist.uid}" class="user">${userlist.username}</a> <span class="guanzhu${userlist.uid}">关注了你</span> 
-						<div class="time">
-						<span class="guanzhu2${userlist.uid}"></span>
-						</div>
-					</div>
-				</li>
-				 </c:forEach>
-			</ul>
-		</div>
+   		<input id="remindid" type="hidden" value="${user.uid}">
+<div class="userlistbb Gainlikediv">
+
+<div class="menu">我收到的赞</div>
+
+
+</div>
    		
   </body>
 

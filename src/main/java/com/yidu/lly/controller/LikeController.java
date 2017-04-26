@@ -26,17 +26,43 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 
+
+
+
+import com.yidu.lly.model.Article;
 import com.yidu.lly.model.Friend;
 import com.yidu.lly.model.Like;
+import com.yidu.lly.model.Remind;
 import com.yidu.lly.model.User;
+import com.yidu.lly.service.ArticleService;
 import com.yidu.lly.service.FriendService;
 import com.yidu.lly.service.LikeService;
+import com.yidu.lly.service.RemindService;
 import com.yidu.lly.service.UserService;
 
 @Controller
 @RequestMapping("/like")
 public class LikeController {
-	
+	@Resource(name = "remindServiceImpl")
+	private RemindService remindService;
+
+	public RemindService getRemindService() {
+		return remindService;
+	}
+
+	public void setRemindService(RemindService remindService) {
+		this.remindService = remindService;
+	}
+	@Resource(name="articleServiceImpl")
+	private ArticleService articleService;
+
+	public ArticleService getArticleService() {
+		return articleService;
+	}
+
+	public void setArticleService(ArticleService articleService) {
+		this.articleService = articleService;
+	}
 	
 	@Resource(name="likeServiceImpl")
 	private LikeService likeService;

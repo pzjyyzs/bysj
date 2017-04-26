@@ -163,8 +163,9 @@ public class ArticleController {
 			str2="display:none";
 		}
 		
-		Integer count=this.likeService.selectountLike(like);
-		
+		Integer likecount=this.likeService.selectountLike(like);
+		Integer comcount=commentService.selectountComent(aid);
+	
 		
 		for(int i=0;i<comlist.size();i++){
 			User comuser=this.userService.selectUser(comlist.get(i).getComuserid());
@@ -175,10 +176,25 @@ public class ArticleController {
 		session.setAttribute("auser", auser);
 		session.setAttribute("comlist", comlist);
 		session.setAttribute("usercomlist", usercomlist);
-		session.setAttribute("count", count);
+		session.setAttribute("comcount", comcount);
+		
+
+		session.setAttribute("likecount", likecount);
 		session.setAttribute("str2", str2);
 		session.setAttribute("str1", str1);
 		
+		
+		
+		//所有回复评论集合
+		
+	
+		
+		List<ComReply> comreplylist= this.commentService.selectReplyComent();
+		for(ComReply item:comreplylist){
+			item.setReplyuname((this.userService.selectUser(item.getReplyuid())).getUsername());
+		}
+
+		session.setAttribute("comreplylist", comreplylist);
 		return "article/wenzhang";
 	}
 	

@@ -75,21 +75,25 @@ public class MailController {
 	//写私信
 	
 		@RequestMapping(value="/writeMail.do", method = RequestMethod.POST)
-		public String writeMail(HttpServletRequest request,HttpSession session){
-			User MyUser=(User) session.getAttribute("user");
-			User OtherUser=(User)session.getAttribute("OtherUser");
+		public @ResponseBody void writeMail(HttpServletRequest request,HttpSession session){
+			String MyUserid=request.getParameter("MyUserid");
+			String OtherUserid=request.getParameter("OtherUserid");
+			
+			
+			Integer myUserid=Integer.parseInt(MyUserid);
+			Integer otherUserid=Integer.parseInt(OtherUserid);
 			
 			String myMessage=request.getParameter("myMessage");
-		Mail MyMail=new Mail();
+
+			Mail MyMail=new Mail();
 		
-		MyMail.setSendid(MyUser.getUid());
-		MyMail.setReceiveid(OtherUser.getUid());
+		MyMail.setSendid(myUserid);
+		MyMail.setReceiveid(otherUserid);
 		MyMail.setCotent(myMessage);
 			
 				
 		this.MailService.insertMail(MyMail);
 		
-	  return "redirect:/mail/showSession.do?userid="+OtherUser.getUid() +"";
 		}
 	
 	

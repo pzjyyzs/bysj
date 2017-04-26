@@ -11,6 +11,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 		<script type="text/javascript" src="js/remind.js" ></script>
 		<link rel="stylesheet" href="css/header.css" />
+		<script type="text/javascript" src="js/likeAndcomremind.js" ></script>
+		<script type="text/javascript" src="js/likeAndcomremind2.js" ></script>
 </head>
 
 
@@ -32,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="user">
 					<div class="avatar">
 						<a href="user/showmyuser.do">
-							<img src="">
+							<img src="${user.img}">
 						</a>
 					</div>
 				</div>

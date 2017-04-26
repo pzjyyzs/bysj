@@ -38,6 +38,17 @@ import com.yidu.lly.service.UserService;
 @Controller("jsonController")
 @RequestMapping("/json")
 public class JsonController {
+	
+	@Resource(name="articleServiceImpl")
+	private ArticleService articleService;
+
+	public ArticleService getArticleService() {
+		return articleService;
+	}
+
+	public void setArticleService(ArticleService articleService) {
+		this.articleService = articleService;
+	}
 	@Resource(name = "remindServiceImpl")
 	private RemindService remindService;
 
@@ -194,5 +205,75 @@ public class JsonController {
 		}
 
 	}
+	
+	// 喜欢提醒机制
+		@RequestMapping(value = "/LikeRemind.do", method = RequestMethod.GET)
+		public @ResponseBody
+		List<Remind> LikeRemind(HttpServletRequest request, HttpSession session) {
+
+			String remindid = request.getParameter("remindid");
+			Integer RemindId = Integer.parseInt(remindid.trim());
+			// 1,0分别对应true和false,true表示已阅读，false表示没有阅读；
+			
+			List<Article> myArticleList=this.articleService.selectArticle(RemindId);
+
+			List<Remind> LikeList = this.remindService.selectLikeRemind();
+			
+			List<Remind>  MyLikeList=new ArrayList<Remind>();
+			for(Article article:myArticleList){
+				for(Remind remind:LikeList){
+					if(article.getAid()==remind.getMyid()){
+						MyLikeList.add(remind);
+					}
+				}
+			}
+			
+			return MyLikeList;
+		}
+	
+		
+		// 读过喜欢后对数据库的刷新
+		@RequestMapping(value = "/readXiHuan.do", method = RequestMethod.GET)
+		public @ResponseBody
+		void readXiHuan(HttpServletRequest request, HttpSession session) {
+			if (null == request.getParameter("myguanzhuId")
+					|| null == request.getParameter("otherguanzhuId")) {
+
+			} else {
+				String myguanzhuid = request.getParameter("myguanzhuId");
+				String otherguanzhuid = request.getParameter("otherguanzhuId");
+
+				Integer myguanzhuId = Integer.parseInt(myguanzhuid.trim());
+				Integer otherguanzhuId = Integer.parseInt(otherguanzhuid.trim());
+
+				this.remindService.updateGuanzhuRemind(myguanzhuId, otherguanzhuId);
+			}
+
+		}
+		
+		// 评论提醒机制
+		@RequestMapping(value = "/CommentRemind.do", method = RequestMethod.GET)
+		public @ResponseBody
+		List<Remind> CommentRemind(HttpServletRequest request, HttpSession session) {
+
+			String remindid = request.getParameter("remindid");
+			Integer RemindId = Integer.parseInt(remindid.trim());
+			// 1,0分别对应true和false,true表示已阅读，false表示没有阅读；
+
+			List<Article> myArticleList=this.articleService.selectArticle(RemindId);
+
+			List<Remind> ComList = this.remindService.selectComRemind();
+			
+			List<Remind>  MyComList=new ArrayList<Remind>();
+			for(Article article:myArticleList){
+				for(Remind remind:ComList){
+					if(article.getAid()==remind.getMyid()){
+						MyComList.add(remind);
+					}
+				}
+			}
+			return ComList;
+		}
+	
 
 }

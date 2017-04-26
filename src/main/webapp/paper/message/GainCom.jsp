@@ -23,11 +23,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="css/myfans.css" />
 		<script type="text/javascript" src="js/jquery-3.1.1.min.js" ></script>
+	
 		<script src="js/bootstrap.min.js"></script>
+		
+		<script type="text/javascript">//<![CDATA[
+        function readCom(){
+	alert("choushabi");
+	}
+  
+  </script>
   </head>
   
   <body>
-   		<jsp:include page="MessageIndex.jsp"/> 
+   		 <jsp:include page="MessageIndex.jsp"/> 
    		
    		<%-- <c:forEach var="userlist" items="${userlist}">
 	    <div>${userlist.img}</div>
@@ -40,23 +48,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	             
 	     </div>
    </c:forEach> --%>
-   		
-   		<div class="userlistbb">
-			<div class="menu">我的粉丝</div>
-			<ul class="like-list">
-				<c:forEach var="userlist" items="${userlist}">
-		      <li class="">
-					<a  class="avatar"><img src="${userlist.img}"></a>
-					<div class="info"><a href="user/showOtheruser.do?userid=${userlist.uid}" class="user">${userlist.username}</a> <span class="guanzhu${userlist.uid}">关注了你</span> 
-						<div class="time">
-						<span class="guanzhu2${userlist.uid}"></span>
-						</div>
-					</div>
-				</li>
-				 </c:forEach>
-			</ul>
-		</div>
-   		
-  </body>
+   		<input id="remindid" type="hidden" value="${user.uid}">
 
+   		<div class="userlistbb GainComdiv">
+			<div class="menu">我收到的评论</div>
+        </div>
+</body>	
 </html>

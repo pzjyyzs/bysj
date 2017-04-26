@@ -18,4 +18,7 @@ public interface RemindMapper {
 	
 	public void updateGuanzhuRemind(Map<String, Object> parms);
 	
+	public List<Remind> selectLikeRemind();
+	public List<Remind> selectComRemind();
+	
 }

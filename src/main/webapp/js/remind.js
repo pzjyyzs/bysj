@@ -16,7 +16,12 @@ function startRequest(){
 						 $(".privateMail").css("color","red");
 						 /*$(".readGuanzhu"+item.otherid).css("color","red");*/
 						 var str="mail"+item.myid;
+						
+						 $("."+str).html("有新消息");
 						 $("."+str).css("color","red");
+					
+				
+
 						 }
 		            });
 		},
@@ -35,16 +40,24 @@ function startRequest(){
 			},
 		success:function(data){
 			jQuery.each(data, function(i,item){
+				 var str2="guanzhu2"+item.otherid;
+				 $("."+str2).html(item.creattime);
 				if(!item.mark){
 					 /*alert(".readGuanzhu"+item.otherid);*/
 					 $("#Allxiaoxi").css("color","red");
 					 $(".myguanzhu").css("color","red");
 					 var str="guanzhu"+item.otherid;
+					
 					 $("."+str).css("color","red");
+					
 				};
 			});
 		},
 	});
+	
+	
+	
+	
 
 }
 

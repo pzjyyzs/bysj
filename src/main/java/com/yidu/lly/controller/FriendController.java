@@ -111,25 +111,31 @@ public class FriendController {
 		for (User uitem: Userlist) {
 			List<Article> userArticlelist=this.articleService.selectArticle(uitem.getUid());
 			for(Article article:userArticlelist){
+				
 				Articleinfomation articleinfomation=new Articleinfomation();
 				articleinfomation.setArticlename(article.getArticlename());
 				articleinfomation.setArticlecontent(article.getArticlecontent());
 				articleinfomation.setArticletime(article.getArticletime());
 				articleinfomation.setUsername(uitem.getUsername());
 				articleinfomation.setImg(uitem.getImg());
-				
+				articleinfomation.setUid(uitem.getUid());
+				articleinfomation.setAimgaddress(article.getAimgaddress());
+				articleinfomation.setArticleread(article.getArticleread());
 				articleinfomation.setComcount(commentService.selectountComent(article.getAid()));
+				
+				articleinfomation.setAid(article.getAid());
 				
 				Like like=new Like();
 				like.setArticleid(article.getAid());
 				articleinfomation.setLikecount(likeService.selectountLike(like));
-		    	
-				articleinfomation.setUid(article.getUid());
-				
+		  
 				articlelist.add(articleinfomation);
 		    	
 		    }
 		}
+		
+		
+		
 		
 		session.setAttribute("articlelist", articlelist);
 		
@@ -141,7 +147,7 @@ public class FriendController {
 			return "none";
 		}else{
 			
-		return "article/FriendAtList";
+		return "article/friendAtList";
 		}
 	}
 	//加关注

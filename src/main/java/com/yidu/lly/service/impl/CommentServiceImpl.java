@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yidu.lly.mapper.CommentMapper;
+import com.yidu.lly.model.ComReply;
 import com.yidu.lly.model.Comment;
 import com.yidu.lly.service.CommentService;
 //接口的实现类
@@ -30,5 +31,17 @@ public class  CommentServiceImpl implements CommentService  {
 	public Integer selectountComent(int comarid) {
 		// TODO Auto-generated method stub
 		return this.commentMapper.selectountComent(comarid);
+	}
+
+	@Override
+	public void insertComReply(ComReply comreply) {
+		// TODO Auto-generated method stub
+		 this.commentMapper.insertComReply(comreply);
+	}
+
+	@Override
+	public  List<ComReply> selectReplyComent() {
+		// TODO Auto-generated method stub
+		return  this.commentMapper.selectReplyComent();
 	};
 }
