@@ -22,4 +22,14 @@
 	<delete id="delColfollow" parameterType="com.yidu.lly.model.Colfollow">
 	  delete from colfollow where uid=#{uid} and cid=#{cid}
 	</delete>
+	
+	<insert id="addColtag" parameterType="com.yidu.lly.model.Coltag">
+		insert into coltag(tagname,cid,taguid) value(#{tagname},#{cid},#{taguid})
+	</insert>
+	<select id="showtag" parameterType="int" resultType="com.yidu.lly.model.Coltag">
+		select * from coltag where cid=#{cid}
+	</select>
+	<delete id="deltag" parameterType="com.yidu.lly.model.Coltag">
+	 delete from coltag where coltid=#{coltid}
+	</delete>
 </mapper>

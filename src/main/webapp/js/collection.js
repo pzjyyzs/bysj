@@ -1,6 +1,5 @@
 $(document).ready(function(){
 	$("#follow").click(function(){
-		alert("haha");
 		$.ajax({
 			url:"collection/collect.do",
 			type:"post",
@@ -19,5 +18,14 @@ $(document).ready(function(){
 				}
 			}
 		});
+	});
+	$("#add").click(function(){
+		$("#add").css("display","none");
+		$("#tagInp").css("display","inline-block");
+	});
+	$("#tagInp").blur(function(){
+		$("#add").css("display","block");
+		$("#tagInp").css("display","none");
+		
 	});
 });
