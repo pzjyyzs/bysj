@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.yidu.lly.mapper.ArticleMapper;
 import com.yidu.lly.model.Article;
+import com.yidu.lly.model.SaveArticle;
 import com.yidu.lly.service.ArticleService;
 
 @Service("articleServiceImpl")
@@ -35,5 +36,37 @@ public class ArticleServiceImpl implements ArticleService{
 		// TODO Auto-generated method stub
 		return this.articleMapper.selectArticle(uid);
 	}
+
+	@Override
+	public void saveArticle(SaveArticle sa) {
+		// TODO Auto-generated method stub
+		 this.articleMapper.saveArticle(sa);	
+	}
+
+	@Override
+	public SaveArticle selectsaveArticle(int id) {
+		// TODO Auto-generated method stub
+		return this.articleMapper.selectsaveArticle(id);
+	}
+
+	@Override
+	public void updateSaveAticle(SaveArticle sa) {
+		// TODO Auto-generated method stub
+		this.articleMapper.updateSaveAticle(sa);
+	}
+
+	@Override
+	public void deletesaveArticle(int id) {
+		// TODO Auto-generated method stub
+		this.articleMapper.deletesaveArticle(id); 
+		
+	}
+
+	@Override
+	public List<SaveArticle> selectMysaveArticle(int uid) {
+		// TODO Auto-generated method stub
+		return this.articleMapper.selectMysaveArticle(uid);
+	}
+
 
 }

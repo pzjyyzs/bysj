@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</a>
 				<!-- 右上角-->
 				<!-- 登录显示写文章-->
-				<a class="btn write-btn" target="_blank" href="paper/article/write.jsp">
+				<a class="btn write-btn" target="_blank" href="article/showWrite.do">
 					<i class="glyphicon glyphicon-leaf">写文章</i>
 				</a>
 				<div class="user">

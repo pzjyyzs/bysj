@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,6 +30,7 @@ import com.yidu.lly.model.DyMail;
 import com.yidu.lly.model.Friend;
 import com.yidu.lly.model.Mail;
 import com.yidu.lly.model.Remind;
+import com.yidu.lly.model.SaveArticle;
 import com.yidu.lly.model.User;
 import com.yidu.lly.service.ArticleService;
 import com.yidu.lly.service.FriendService;
@@ -274,6 +277,64 @@ public class JsonController {
 			}
 			return ComList;
 		}
-	
+		// 保存文章
+		@RequestMapping(value = "/savearticle.do", method = RequestMethod.GET)
+		public @ResponseBody
+		int savearticle(HttpServletRequest request, HttpSession session) {
+			User user=(User)session.getAttribute("user");
+			int uid=user.getUid();
+			SaveArticle SA=new SaveArticle();
+			SA.setType(0);
+			SA.setUid(uid);
+			this.articleService.saveArticle(SA);
+			int SaveAticleId=SA.getId();
+		
+			
+			return SaveAticleId;
+		}
+		// 显示保存文章的内容
+				@RequestMapping(value = "/showsavearticle.do", method = RequestMethod.GET)
+				public @ResponseBody
+				SaveArticle showsavearticle(HttpServletRequest request, HttpSession session) {
+					String id = request.getParameter("id");
+					int SAId = Integer.parseInt(id.trim());
+				
+					SaveArticle SA=this.articleService.selectsaveArticle(SAId);
+					return SA;
+				}
+		// 更新保存文章的内容
+				@RequestMapping(value = "/updatesavearticle.do", method = RequestMethod.POST)
+				public @ResponseBody
+				SaveArticle updatesavearticle(HttpServletRequest request, HttpSession session) {
+					String id = request.getParameter("id");
+					int SAId = Integer.parseInt(id.trim());
+					
+					String notetitle=request.getParameter("note_title");
+					String notecontent=request.getParameter("note_content");
+					
+					SaveArticle SA=new SaveArticle();
+					SA.setId(SAId);
+					SA.setArticlename(notetitle);
+					SA.setArticlecontent(notecontent);
+					
+					
 
+					this.articleService.updateSaveAticle(SA);
+					return SA;
+					
+				}
+				
+				
+				
+				// 删除新建文章
+				@RequestMapping(value = "/DeletesaveArticle.do", method = RequestMethod.GET)
+				public @ResponseBody
+				int DeletesaveArticle(HttpServletRequest request, HttpSession session) {
+					String id = request.getParameter("id");
+					int SAId = Integer.parseInt(id.trim());
+					
+					this.articleService.deletesaveArticle(SAId);
+					
+					return SAId;
+				}
 }

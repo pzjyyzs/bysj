@@ -11,6 +11,18 @@
                 <result property="articleread" column="articleread"/>  
                 <result property="aimgaddress" column="aimgaddress"/> 
         </resultMap>
+        
+        <resultMap type="com.yidu.lly.model.SaveArticle" id="savearticleList">  
+                <result property="id" column="id"/>  
+                <result property="articlename" column="articlename"/>  
+                 <result property="articlecontent" column="articlecontent"/>  
+                <result property="uid" column="uid"/>  
+                <result property="type" column="type"/>  
+          
+        </resultMap>
+        
+        
+        
 
 
   <insert id="insertArticle" parameterType="com.yidu.lly.model.Article">
@@ -29,5 +41,26 @@
   	select * from article where uid=#{uid}
   </select>
   
+    
+  <select id="selectMysaveArticle" parameterType="int" resultMap="savearticleList">
+  	select * from savearticle where uid=#{uid}
+  </select>
+  
+ <insert id="saveArticle" parameterType="com.yidu.lly.model.SaveArticle" useGeneratedKeys="true" keyProperty="id"  keyColumn="id">
+    insert into savearticle(type,uid) values(#{type},#{uid})
+  </insert>
+    <delete id="deletesaveArticle" parameterType="int">  
+  delete from savearticle where id=#{id} 
+      
+</delete> 
+ 
+  <select id="selectsaveArticle" parameterType="int" resultType="com.yidu.lly.model.SaveArticle">
+  	select * from savearticle where id=#{id}
+  </select>
+ 
+   <update id="updateSaveAticle" parameterType="com.yidu.lly.model.SaveArticle" >
+ update savearticle set articlename=#{articlename},articlecontent=#{articlecontent} where id=#{id}
+</update>
+ 
  
   </mapper>

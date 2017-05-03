@@ -6,7 +6,9 @@ $(document).ready(function(){
 		$("#kalamu-image-model").css("display","none");
 	});
 	$("#addArticle").click(function(){
-		addArticle();
+		var id=$("#mytSAid").val();
+	
+		addArticle(id);
 	});
 	$("#sctp").click(function(){
 		ajaxFileUpload();
@@ -20,8 +22,25 @@ $(document).ready(function(){
     		html = converter.makeHtml(text);  
     	document.getElementById("result").innerHTML = html;
 	});
+	
+	$(".new-note-link").click(function(){
+	$.ajax({
+			url:"json/savearticle.do",
+			type:"get",
+			async: true,
+			dataType:'json',
+			success:function(data){
+				$(".ui-sortable").append("<li class='one-note active' id='xinjianwz"+data+"'><p class='abbreviate'></p><a href='javascript:void(0)' onclick='clickTitle("+data+")' class='note-list title'><span id='xiugaititle"+data+"'>无标题文</span></a><a href='javascript:void(0)' class='icon-note' onclick='Updatecotent("+data+")'><i class='glyphicon glyphicon-file'></i></a><a href='javascript:void(0)' onclick='DeleteCotent("+data+")' class='share-note dropdown-toggle'><i class='glyphicon glyphicon-trash'></i></a></li>");
+				$(".span5").css('display','block'); 
+			},
+		
+		
+		});
+
+	});
 });
-function addArticle(){
+function addArticle(id){
+	DeleteCotent(id);
 	$.ajax({
 		type:"post",
 		url:"article/addarticle.do",
@@ -57,3 +76,60 @@ function ajaxFileUpload(){
 	});
 }
 
+
+function clickTitle(id){
+	$.ajax({
+		url:"json/showsavearticle.do",
+		type:"get",
+		async: true,
+		dataType:'json',
+		data:{
+			id:id
+		},
+		success:function(data){
+			$("#note_title").val(data.articlename);
+			$("#note_content").val(data.articlecontent);
+			$("#mytSAid").val(data.id);
+		},
+	});
+}
+function Updatecotent(id){
+	$.ajax({
+		url:"json/updatesavearticle.do",
+		type:"post",
+		dataType:'json',
+		data:{
+			id:id,
+			note_title:$("#note_title").val(),
+			note_content:$("#note_content").val(),
+		},
+		success:function(data){
+			$("#xiugaititle"+data.id+"").html(data.articlename);
+			$("#mytSAid").val(data.id);
+		},
+	});
+}
+
+function DeleteCotent(id){
+	$.ajax({
+		url:"json/DeletesaveArticle.do",
+		type:"get",
+		dataType:'json',
+		data:{
+			id:id
+		},
+		success:function(data){
+			
+			$("#xinjianwz"+data+"").remove();
+			$("#note_title").val("");
+			$("#note_content").val("");
+			
+			if($("ul").has("li").length>1){
+			}else{
+				$(".span5").css('display','none'); 
+			}
+			
+			
+		},
+	});
+}

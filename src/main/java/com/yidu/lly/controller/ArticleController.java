@@ -198,5 +198,22 @@ public class ArticleController {
 		return "article/wenzhang";
 	}
 	
+	@RequestMapping(value="/showWrite.do",method=RequestMethod.GET)
+	public String showWrite(HttpServletRequest request,HttpSession session){
+		User user=(User)session.getAttribute("user");
+		int uid=user.getUid();
+		
+		List<SaveArticle> SaveArticlelist=this.articleService.selectMysaveArticle(uid);
+		String str="";
+		if(SaveArticlelist.isEmpty() ){
+			str="display:none";
+		}else{
+			str="display:block";
+		}
+		session.setAttribute("SaveArticlelist", SaveArticlelist);
+		session.setAttribute("str", str);
+		return "article/write";
+	}
+	
 
 }
