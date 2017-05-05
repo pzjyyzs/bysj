@@ -27,6 +27,8 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.yidu.lly.model.*;
 import com.yidu.lly.service.ArticleService;
+import com.yidu.lly.service.ColarticService;
+import com.yidu.lly.service.CollectionService;
 import com.yidu.lly.service.CommentService;
 import com.yidu.lly.service.LikeService;
 import com.yidu.lly.service.UserService;
@@ -81,9 +83,28 @@ public class ArticleController {
 		this.likeService = likeService;
 	}
 	
+	@Resource(name="collectionServiceImpl")
+	private CollectionService collectionService;
 	
+	public CollectionService getCollectionService() {
+		return collectionService;
+	}
+
+	public void setCollectionService(CollectionService collectionService) {
+		this.collectionService = collectionService;
+	}
+
+	@Resource(name="colarticServiceImpl")
+	private ColarticService colarticService;
 	
-	
+	public ColarticService getColarticService() {
+		return colarticService;
+	}
+
+	public void setColarticService(ColarticService colarticService) {
+		this.colarticService = colarticService;
+	}
+
 	//发表文章
 	@RequestMapping(value="/addarticle.do", method = RequestMethod.POST)
 	public@ResponseBody Map<String,Object> addArticle(HttpServletRequest request,HttpSession session){
@@ -195,6 +216,18 @@ public class ArticleController {
 		}
 
 		session.setAttribute("comreplylist", comreplylist);
+		
+		//收藏
+		
+		List<Integer> showCollection = this.colarticService.showColarticCid(aid);
+		List<Collection> articleCollection=new ArrayList<Collection>();
+		for (Integer i : showCollection) {
+			Collection c=this.collectionService.showCollection(i);
+			articleCollection.add(c);
+		}
+		List<Collection> userCollection=this.collectionService.showUserCollection(user.getUid());
+		session.setAttribute("articleCollection", articleCollection);
+		session.setAttribute("userCollection", userCollection);
 		return "article/wenzhang";
 	}
 	
