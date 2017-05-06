@@ -23,10 +23,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
 	<script type="text/javascript" src="js/jquery-3.1.1.min.js" ></script>
 	<script src="js/bootstrap.min.js"></script>
-
   </head>
   
-  <body  style="overflow-y: scroll;">
+  <body  style="overflow:hidden;">
    <jsp:include page="../header.jsp"/> 
    <div class="container collection">
 			<div class="row">
@@ -36,10 +35,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<a class="avatar-collection" href="javascript:void(null)">
 							<img src="${sessionScope.collection.collectionimg }">
 						</a>
-						<a class="btn btn-success follow">
+						
+						<a class="btn btn-success follow" id="follow" href="javascript:void(null)">
 							<i class="glyphicon glyphicon-plus"></i>
-							<span>收藏</span>
+							<c:if test="${sessionScope.colfollowflag == false }">
+								<span id="colfollow">收藏</span>
+								<input type="hidden" id="colfo" value="0">
+							</c:if>
+							<c:if test="${sessionScope.colfollowflag == true }">
+								<span id="colfollow">取消收藏</span>
+								<input type="hidden" id="colfo" value="1">
+							</c:if>
 						</a>
+										
 						<div class="btn btn-hollow js-contribute-button">
 							投稿
 						</div>
@@ -179,13 +187,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</ul>
 						</div>
 					</div>
+					<div class="tab">
+						<p>标签</p>
+						<a href="javascript:void(0)" class="add" id="add">+添加</a>
+						<input placeholder="请输入标签" class="tagInp" id="tagInp">
+					</div>
 					<div class="user-action">
 						<c:if test="${sessionScope.collection.uid == sessionScope.user.uid }">
-							<a class="name" href="updateColl.jsp">编辑专题</a>
+							<a class="name" href="paper/collection/updateColl.jsp">编辑专题</a>
 						</c:if>
 					</div>
 				</div>
 			</div>
 		</div>
+		<script src="js/collection.js"></script>
   </body>
 </html>

@@ -297,3 +297,152 @@ ul,ol{
 	font-size: 13px;
     color: #787878;
 }
+.modal{
+	overflow-x: hidden;
+	overflow-y: auto;
+	background-color: hsla(0,0%,100%,.7);
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1050;
+	outline: 0;
+	display: none;
+}
+.add-self .modal-dialog{
+	width: 620px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -280px;
+    margin-left: -310px;
+}
+.modal-content {
+    overflow: hidden;
+    z-index: 9;
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #999;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 6px;
+    box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    background-clip: padding-box;
+    outline: 0;
+}
+.modal .modal-content {
+    box-shadow: 0 5px 25px rgba(0,0,0,.1);
+    -webkit-box-shadow: 0 5px 25px rgba(0,0,0,.1);
+    border: 1px solid rgba(0,0,0,.1);
+}
+.modal-header {
+	padding: 20px;
+	border-bottom: 1px solid #E5E5E5;
+}
+.modal-header .close {
+    margin-top: -2px;
+}
+button.close {
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    -webkit-appearance: none;
+}
+.close {
+    font-weight: 200;
+    font-size: 26px;
+    outline: none;
+    text-shadow: none;
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .2;
+    filter: alpha(opacity=20);
+}
+.modal-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+    line-height: 1.42857;
+}
+.add-self .modal-body {
+	height: 500px;
+	padding: 0;
+    overflow: auto;
+    position: relative;
+}
+.add-self .modal-body ul{
+	margin: 0;
+	padding-left: 0;
+}
+.add-self .modal-body li{
+	position: relative;
+    padding: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    line-height: normal;
+}
+.add-self .modal-body .avatar-collection{
+	margin-right: 5px;
+    vertical-align: middle;
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+}
+.avatar-collection img {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ddd;
+    border-radius: 10%;
+}
+.add-self .modal-body .collection-info{
+	vertical-align: middle;
+    display: inline-block;
+}
+.add-self .modal-body .collection-name{
+	font-size: 15px;
+	font-weight: 700;
+	color: #333;
+	display: block;
+}
+.add-self .modal-body .meta{
+	font-size: 12px;
+    color: #969696;
+    display: inline-block;
+}
+.add-self .modal-body .push{
+	color: #42c02e;
+    border: 1px solid #42c02e;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    margin-top: -12px;
+    padding: 2px 5px;
+    font-size: 13px;
+    border-radius: 4px;
+    line-height: normal;
+}
+.add-self .modal-body .status{
+	font-size: 12px;
+	vertical-align: middle;
+	color: #42C02E;
+}
+.add-self .modal-body .action-btn{
+	position: absolute;
+    top: 50%;
+    right: 20px;
+    margin-top: -12px;
+    padding: 2px 5px;
+    font-size: 13px;
+    border-radius: 4px;
+    line-height: normal;
+}
+.add-self .modal-body .remove{
+	color: #ea6f5a;
+    border: 1px solid #ea6f5a;
+}

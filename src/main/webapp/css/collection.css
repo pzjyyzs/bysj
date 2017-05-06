@@ -11,7 +11,7 @@ body{
 	font-size: 17px;
 	color: #000;
 	width: 100%;
- 	height: 100%;	
+ 	height: 100%;
 }
 a{
 	text-decoration: none;
@@ -108,6 +108,9 @@ nav form .search-btn{
 	padding:0 !important;
 	color: #969696 !important;
 	text-align: center;
+}
+.collection{
+	margin-top:80px;
 }
 .collection .row{
 	padding-top: 30px;
@@ -323,6 +326,41 @@ nav form .search-btn{
 .aside .share span{
 	font-size: 14px;
 	vertical-align: middle;
+}
+.aside .tab{
+	margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #F0F0F0;
+    line-height: 30px;
+    font-size: 14px;
+    overflow: hidden;
+}
+.aside .tab .tag-single,.add{
+	border: 1px solid #eee;
+	border-radius: 3px;
+	height: 26px;
+	line-height: 24px;
+    padding: 0 8px;
+    box-sizing: border-box;
+    margin-right: 10px;
+    text-align: center;
+    position: relative;
+    margin-bottom: 6px;
+    float: left;
+}
+.aside .tab .add{
+	color: #888;
+}
+.aside .tab .tagInp{
+	width: 140px;
+    height: 26px;
+    font-size: 12px;
+    color: #999;
+    border-radius: 3px;
+    border: 1px solid #eee;
+    box-sizing: border-box;
+    padding: 0 10px;
+    display: none;
 }
 .aside .list {
     margin-bottom: 20px;

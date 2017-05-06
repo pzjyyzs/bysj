@@ -4,4 +4,15 @@
 	<select id="showColarticAid" parameterType="int" resultType="int">
 		select aid from colartic where cid=#{cid}
 	</select>
+	<select id="showColarticCid" parameterType="int" resultType="int">
+		select cid from colartic where aid=#{aid}
+	</select>
+	
+	<insert id="addColartic" parameterType="com.yidu.lly.model.Coltag">
+		insert into colartic(caid,aid,cid) value(#{caid},#{aid},#{cid}) 
+	</insert>
+	
+	<delete id="delColartic" parameterType="com.yidu.lly.model.Coltag">
+		delete from colartic where aid=#{aid} and cid=#{cid}
+	</delete>
 </mapper>

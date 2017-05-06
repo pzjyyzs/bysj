@@ -32,4 +32,9 @@
 	<delete id="deltag" parameterType="com.yidu.lly.model.Coltag">
 	 delete from coltag where coltid=#{coltid}
 	</delete>
+	
+	<select id="showUserCollection" resultType="com.yidu.lly.model.Collection" parameterType="int">
+		select * from collection where uid=#{uid}
+	</select>
+	
 </mapper>

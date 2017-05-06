@@ -109,6 +109,9 @@ nav form .search-btn{
 	color: #969696 !important;
 	text-align: center;
 }
+.new-collection{
+	margin-top:80px;
+}
 .new-collection .row{
 	padding-top: 30px;
 }
@@ -179,3 +182,4 @@ nav form .search-btn{
 	display: block;
 	
 }
+

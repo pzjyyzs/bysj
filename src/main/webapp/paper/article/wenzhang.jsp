@@ -174,10 +174,57 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="main">
 				<div class="title">被以下专题收入</div>
 				<div class="include-collection">
-					<a href="" target="_blank" class="item">
-						<img src="img/enhanced-buzz-wide-16461-1372163238-8.jpg">
-						<div class="">生活家</div>
+					<div class="modal-wrap add-collection-wrap">
+						<a class="add-collection" href="javascript:void(null)" onclick="showModal()">
+							<i class="glyphicon glyphicon-plus"></i>
+							<div>我的专题</div>
+						</a>
+					</div>
+					<c:forEach items="${sessionScope.articleCollection }" var='collection'>
+					<a href="collection/showcollection.do?cid=${collection.cid }" target="_blank" class="item">
+						<img src="${collection.collectionimg }">
+						<div class="name">${collection.collectionname }</div>
 					</a>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
+		<div class="modal animated add-self">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" onclick="closeModal()">x</button>
+						<h4 class="modal-title">加入我的专题</h4>
+					</div>
+					<div class="modal-body">
+						<ul>
+						<c:forEach items="${sessionScope.userCollection }" var="collection">
+							<li>
+								<a href="" class="avatar-collection">
+									<img src="${collection.collectionimg }">
+								</a>
+								<div class="collection-info">
+									<a href="" class="collection-name">${collection.collectionname }</a>
+									<div class="meta">${sessionScope.user.username } 编</div>
+									<c:set var="flag" value="0" />
+									<c:forEach items="${sessionScope.articleCollection }" var='c'>
+									<c:if test="${collection.cid == c.cid }">
+									<span class="status has-add">已收入</span>
+									<a class="action-btn remove" p="${collection.cid }" c="${sessionScope.article.aid }">移除</a>
+									<a class="action-btn push" id="push" p="${collection.cid }"  c="${sessionScope.article.aid }" style="display: none">收入</a>
+									<c:set var="flag" value="1"/>
+									</c:if>
+									</c:forEach>
+									<c:if test="${flag==0 }">
+									<span class="status has-add"  style="display: none">已收入</span>
+									<a class="action-btn remove" p="${collection.cid }" c="${sessionScope.article.aid }"  style="display: none">移除</a>
+									<a class="action-btn push" id="push" p="${collection.cid }"  c="${sessionScope.article.aid }">收入</a>
+									</c:if>
+								</div>
+							</li>
+							</c:forEach>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>

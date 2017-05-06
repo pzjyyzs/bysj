@@ -20,7 +20,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
+	<link rel="icon" href="img/logo.ico"/>
+	<link rel="stylesheet" href="css/newColllection.css">
+	<link rel="stylesheet" href="css/index.css" />
+	<link rel="stylesheet" href="css/normalize.css"/>
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<script type="text/javascript" src="js/jquery-3.1.1.min.js" ></script>
+	<script type="text/javascript" src="js/ajaxfileupload.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/newCollection.js"></script>
   </head>
   
   <body>
