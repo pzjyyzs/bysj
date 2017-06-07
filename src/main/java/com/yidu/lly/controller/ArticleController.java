@@ -107,7 +107,7 @@ public class ArticleController {
 
 	//发表文章
 	@RequestMapping(value="/addarticle.do", method = RequestMethod.POST)
-	public@ResponseBody Map<String,Object> addArticle(HttpServletRequest request,HttpSession session){
+	public @ResponseBody Map<String,Object> addArticle(HttpServletRequest request,HttpSession session){
 		Map<String,Object> map = new HashMap<String,Object>();
 		String articlename=request.getParameter("note_title");
 		String articlecontent=request.getParameter("note_content");
@@ -127,6 +127,9 @@ public class ArticleController {
 		article.setAimgaddress(aimgaddress);
 		
 		this.articleService.insertArticle(article);
+		int aid=this.articleService.selArticle(articlename,articlecontent,articletime);
+		map.put("aid", aid);
+		map.put("articlename", articlename);
 		return map;
 	}
 	
@@ -248,5 +251,44 @@ public class ArticleController {
 		return "article/write";
 	}
 	
-
+	@RequestMapping(value="/updateArticle.do",method=RequestMethod.GET)
+	public String updateArticle(HttpServletRequest request,HttpSession session){
+		
+		Article a = (Article) session.getAttribute("article");
+		int aid=a.getAid();
+		
+		int iaid=Integer.valueOf(aid);
+		Article article=this.articleService.showArticleId(iaid);
+		session.setAttribute("updataArticle", article);
+				
+		return "article/updatewrite";
+	}
+	
+	@RequestMapping(value="/delArticle.do", method = RequestMethod.POST)
+	public @ResponseBody Map<String,Object> delArticle(HttpServletRequest request,HttpSession session){
+		Map<String,Object> map = new HashMap<String,Object>();
+		String said=request.getParameter("aid");
+		int aid=Integer.valueOf(said);
+		this.articleService.delArticle(aid);
+		return map;
+	}
+	@RequestMapping(value="/updArticle.do", method = RequestMethod.POST)
+	public  @ResponseBody Map<String,Object> updArticle(HttpServletRequest request,HttpSession session){
+		Map<String,Object> map = new HashMap<String,Object>();
+		String said=request.getParameter("aid");
+		int aid=Integer.valueOf(said);
+		String articlename=request.getParameter("articlename");
+		String articlecontent=request.getParameter("articlecontent");
+		String aimgaddress=request.getParameter("aimgaddress");
+		System.out.println(articlecontent);
+		Article article=new Article();
+		article.setAid(aid);
+		article.setArticlename(articlename);
+		article.setArticlecontent(articlecontent);
+		article.setAimgaddress(aimgaddress);
+		
+		this.articleService.updArticle(article);
+		
+		return map;
+	}
 }

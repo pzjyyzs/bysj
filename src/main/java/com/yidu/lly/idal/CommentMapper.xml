@@ -29,5 +29,10 @@
   <select id="selectReplyComent" resultMap="ComReplyList">
   	select * from replycom 
   </select>
-
+	<delete id="delComment" parameterType="int">
+		 delete from comment where comid=#{comid} 
+	</delete>
+	<delete id="delreply" parameterType="int">
+		delete from replycom where comid=#{comid}
+	</delete>
   </mapper>

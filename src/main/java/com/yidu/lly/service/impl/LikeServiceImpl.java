@@ -1,5 +1,6 @@
 package com.yidu.lly.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,7 +23,6 @@ public class LikeServiceImpl implements LikeService{
 	@Autowired
 	private LikeMapper Likemapper;
 
-	@Override
 	public void insertLike(Like like) {
 				
 		
@@ -32,23 +32,26 @@ public class LikeServiceImpl implements LikeService{
 		
 	}
 
-	@Override
 	public Like selectLike(Like like) {
 		
 		// TODO Auto-generated method stub
 		return this.Likemapper.selectLike(like);
 	}
 
-	@Override
 	public Integer selectountLike(Like like) {
 		// TODO Auto-generated method stub
 		return this.Likemapper.selectountLike(like);
 	}
 
-	@Override
 	public void delLike(Like like) {
 		// TODO Auto-generated method stub
 		this.Likemapper.delLike(like);
+	}
+
+	
+	public ArrayList<Like> showxihuan(String befortime, String aftertime) {
+		// TODO Auto-generated method stub
+		return this.Likemapper.showxihuan(befortime, aftertime);
 	}
 
 	

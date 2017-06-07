@@ -1,6 +1,9 @@
 package com.yidu.lly.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +18,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -111,21 +126,62 @@ public class UserController {
 
 		if(this.userService.selectUser(userLogin)!=null){
 		  userLogin=this.userService.selectUser(userLogin);
-		
-		  
-		  
-		  List<Article> aList=this.articleService.showArticle();
-		  List<User> ulist=new ArrayList<User>();
-		  for(int i=0;i<aList.size();i++){
-			  User u=this.userService.selectUser(aList.get(i).getUid());
-			  ulist.add(u);
+		  List<Article> alist=null;
+		  if(session.getAttribute("alist")==null){
+			 alist=new ArrayList<Article>();
+			 List<User> ulist=new ArrayList<User>();
+			 List<Article> alistsub=new ArrayList<Article>();
+			 Date date=new Date();
+	  		 SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+	  		 Calendar call=Calendar.getInstance();
+	  		 call.add(Calendar.DAY_OF_MONTH, +1);
+	  		 String comtime=sdf.format(call.getTime());
+	  		 Calendar cal=Calendar.getInstance();
+	  		 cal.add(Calendar.DAY_OF_MONTH, -7);
+	  		 String beforeCom=sdf.format(cal.getTime());
+	         List<Like> likeList=this.likeService.showxihuan(beforeCom, comtime);
+	         for (Like like : likeList) {
+	        	  Article article=this.articleService.showArticleId( like.getArticleid());
+	        	  alist.add(article);
+	         }
+	         
+	         int zs=alist.size()/3;
+
+	         int ys=alist.size()%3;
+	         zs=(ys==0)?zs:zs+1;
+	         if(zs==ys&&ys==0){
+	        	 alistsub=alist;
+	         }
+	         else if(zs!=1){
+	        	 alistsub=alist.subList(0,3);
+	         }else{
+	        	 alistsub=alist;
+	         }
+	         for(int i=0;i<alistsub.size();i++){
+	  			 User u=this.userService.selectUser(alistsub.get(i).getUid());
+	  			 ulist.add(u);
+	         }
+	         
+	          session.setAttribute("alist", alist);
+	          session.setAttribute("alistsub", alistsub);
+	          session.setAttribute("ulist", ulist);
+	          session.setAttribute("zs", zs);
+	          session.setAttribute("count", zs);
+		  }else{
+			  alist=(List<Article>) session.getAttribute("alist");
+			  List<User> ulist=(List<User>) session.getAttribute("ulist");
+			  List<Article> alistsub=(List<Article>) session.getAttribute("alistsub");
+			  int zs=(int) session.getAttribute("zs");
+			  int count=(int) session.getAttribute("count");
+			  session.setAttribute("alist", alist);
+	          session.setAttribute("alistsub", alistsub);
+	          session.setAttribute("ulist", ulist);
+	          session.setAttribute("zs", zs);
+	          session.setAttribute("count", zs);
 		  }
-          session.setAttribute("user", userLogin);
-          session.setAttribute("alist", aList);
-          session.setAttribute("ulist", ulist);
-       
+		  session.setAttribute("user", userLogin);
+		  
           
-         
       	  return "index";
 		}else{
 			System.out.println("can not get user");
@@ -169,7 +225,76 @@ public class UserController {
 		 return map;
 		 
 	}
+	@RequestMapping(value="/xljz.do",method=RequestMethod.POST)
+	public @ResponseBody Map<String,Object> xljz(HttpServletRequest request,HttpServletResponse response,HttpSession session){
+		 Map<String,Object> map = new HashMap<String,Object>();
+		 String zss=request.getParameter("zs");
+		 int zs=Integer.parseInt(zss);
+		 int count=(int) session.getAttribute("count");
+		 ArrayList<Article> alist=(ArrayList<Article>) session.getAttribute("alist");
+		 ArrayList<Article> alistsub=new ArrayList<Article>();
+		 ArrayList<User> ulist=(ArrayList<User>) session.getAttribute("ulist");
+		
+		 if(zs!=1&&alist.size()!=0){
+			 int endCount=count*3-(zs-1)*3;
+			 alistsub=(ArrayList<Article>) alist.subList(0, endCount);
+		 }else{
+			 alistsub=alist;
+		 }
+		 for(int i=0;i<alistsub.size();i++){
+ 			  User u=this.userService.selectUser(alistsub.get(i).getUid());
+ 			  ulist.add(u);
+         }
+		 session.setAttribute("alist", alist);
+         session.setAttribute("alistsub", alistsub);
+         session.setAttribute("ulist", ulist);
+         session.setAttribute("zs", zs);
+		 return map;
+	}
 	
+	@RequestMapping(value="/ts.do",method=RequestMethod.POST)
+	public @ResponseBody Map<String,Object> ts(HttpServletRequest request,HttpServletResponse response,HttpSession session){
+		 Map<String,Object> map = new HashMap<String,Object>();
+		 List<Article> alist=new ArrayList<Article>();
+		 Date date=new Date();
+  		 SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+  		 Calendar call=Calendar.getInstance();
+  		 call.add(Calendar.DAY_OF_MONTH, +1);
+  		 String comtime=sdf.format(call.getTime());
+  		 Calendar cal=Calendar.getInstance();
+  		 cal.add(Calendar.DAY_OF_MONTH, -7);
+  		 String beforeCom=sdf.format(cal.getTime());
+         List<Like> likeList=this.likeService.showxihuan(beforeCom, comtime);
+         for (Like like : likeList) {
+       	  Article article=this.articleService.showArticleId( like.getArticleid());
+       	  alist.add(article);
+        }
+        ArrayList<Article> al=(ArrayList<Article>) session.getAttribute("alist");
+        int zs=(int) session.getAttribute("zs");
+        int count=(int) session.getAttribute("count");
+        if(al.size()==alist.size()){
+        	map.put("temp", false);
+        }else{
+        	map.put("temp", true);
+        }
+        List<Article> alistsub=new ArrayList<Article>();
+        ArrayList<User> ulist=(ArrayList<User>) session.getAttribute("ulist");
+        if(zs!=1 &&alist.size()!=0){
+			 int endCount=count*3-(zs-1)*3;
+			 alistsub=  alist.subList(0, endCount);
+		 }else{
+			 alistsub=alist;
+		 }
+        for(int i=0;i<alistsub.size();i++){
+			  User u=this.userService.selectUser(alistsub.get(i).getUid());
+			  ulist.add(u);
+       }
+        session.setAttribute("alist", alist);
+        session.setAttribute("alistsub", alistsub);
+        session.setAttribute("ulist", ulist);
+        session.setAttribute("zs", zs);
+		return map;
+	}
 	//我的个人主页
 	@RequestMapping(value="/showmyuser.do", method = RequestMethod.GET)
 	public String Tomyuser(HttpServletRequest request,HttpSession session){
@@ -221,6 +346,7 @@ public class UserController {
 				Like like=new Like();
 				like.setArticleid(article.getAid());
 				articleinfomation.setLikecount(likeService.selectountLike(like));
+				System.out.println(articleinfomation.getArticlename());
 		  
 				MyArticleList.add(articleinfomation);
 		   }
@@ -333,6 +459,7 @@ public class UserController {
 					
 					return "OtherIndexUser";
 	}
+	
 	
 	
 }

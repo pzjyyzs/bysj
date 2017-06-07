@@ -68,15 +68,12 @@
 				<div class="span5 main" style="${str}" >
 					<form class="note-form markdown">
 						<input class="title mousetrap" name="note_name" id="note_title"
-							value="无标题文章" /> <input id="mytSAid" type="hidden">
+							value="无标题文章" /> <input id="mytSAid" type="hidden" >
 						<ul class="toolbar clearfix">
 							<li><a href="javascript:void(null)" title="图片" id="uploadp">
 									<i class="glyphicon glyphicon-picture"></i>
 							</a></li>
 
-							<li class="pull-right"><a href="javascript:void(null)"
-								title="保存草稿"> <i class="glyphicon glyphicon-floppy-disk"></i>
-							</a>
 							<li class="pull-right publish-button-item"><a
 								href="javascript:void(null)" id="addArticle"> <i
 									class="glyphicon glyphicon-share-alt"></i> 发布文章
@@ -106,6 +103,7 @@
 							<div class="modal-header">
 								<h3>发表成功</h3>
 							</div>
+							
 						</div>
 					</form>
 				</div>

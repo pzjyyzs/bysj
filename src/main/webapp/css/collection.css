@@ -348,6 +348,17 @@ nav form .search-btn{
     margin-bottom: 6px;
     float: left;
 }
+.aside .tab .tag-single .deltag{
+	cursor: pointer;
+	border: 0;
+	position: absolute;
+	padding: 0;
+	height: 15px;
+	background-color: inherit;
+	right: -5%;
+	top: -50%;
+	display:none;
+}
 .aside .tab .add{
 	color: #888;
 }

@@ -21,27 +21,29 @@ public class  CommentServiceImpl implements CommentService  {
 		this.commentMapper.insertComment(comment);
 	}
 
-	@Override
 	public List<Comment> showComent(int comarid) {
 		
 		return this.commentMapper.showComment(comarid);
 	}
 
-	@Override
 	public Integer selectountComent(int comarid) {
 		// TODO Auto-generated method stub
 		return this.commentMapper.selectountComent(comarid);
 	}
 
-	@Override
 	public void insertComReply(ComReply comreply) {
 		// TODO Auto-generated method stub
 		 this.commentMapper.insertComReply(comreply);
 	}
 
-	@Override
 	public  List<ComReply> selectReplyComent() {
 		// TODO Auto-generated method stub
 		return  this.commentMapper.selectReplyComent();
-	};
+	}
+	public void delComment(int comid){
+		this.commentMapper.delComment(comid);
+	}
+	public void delreply(int comid){
+		this.commentMapper.delreply(comid);
+	}
 }

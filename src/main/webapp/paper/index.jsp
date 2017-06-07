@@ -15,9 +15,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
 		<title>首页 - 易读</title>
 		<link rel="icon" href="img/logo.ico"/>
 		<link rel="stylesheet" href="css/index.css" />
@@ -26,6 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" href="css/bootstrap.min.css"/>
 		<script type="text/javascript" src="js/jquery-3.1.1.min.js" ></script>
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/index.js"></script>
   </head>
   
   <body>
@@ -73,8 +71,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 					</div>
 					<div class="list-container">
-						<ul class="note-list">
-							<c:forEach items="${sessionScope.alist }" var="article">
+						<ul class="note-list" id="note-list">
+						<div class="newarc" id="newarc">有新的文章 点击查看</div>
+						<input type="hidden" value="${sessionScope.zs }" id="zs">
+							<c:forEach items="${sessionScope.alistsub }" var="article">
 							<c:if test="${not empty article.aimgaddress }">
 								<li class="hava-img">
 								<a class="wrap-img" href="" target="_blank">
@@ -87,8 +87,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</a>
 										<div class="name">
 											<a class="blue-link" target="_blank" href="">
+											<c:set var="flag" value="0" />
 											<c:forEach items="${sessionScope.ulist }" var="user">
+											<c:if test="${flag==0}">
 												<c:if test="${user.uid==article.uid }">${user.username }</c:if>
+												<c:set var="flag" value="1"/>
+											</c:if>	
 											</c:forEach>
 											</a>
 											<span class="time">${article.articletime }</span>
@@ -122,13 +126,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												<img src="" />
 											</a>
 											<div class="name">
-												
-													
-													<c:forEach items="${sessionScope.ulist }" var="user">
-													<a class="blue-link" target="_blank" href="user/showOtheruser.do?userid=${user.uid}">
+												<c:set var="flag" value="0" />
+												<c:forEach items="${sessionScope.ulist }" var="user">
+													<c:if test="${flag==0}">
 														<c:if test="${user.uid==article.uid }">${user.username }</c:if>
-													</a>
-													</c:forEach>
+														<c:set var="flag" value="1"/>
+													</c:if>	
+												</c:forEach>
 												
 												<span class="time">${article.articletime }</span>
 											</div>

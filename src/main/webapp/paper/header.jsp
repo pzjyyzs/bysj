@@ -13,6 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" href="css/header.css" />
 		<script type="text/javascript" src="js/likeAndcomremind.js" ></script>
 		<script type="text/javascript" src="js/likeAndcomremind2.js" ></script>
+		
 </head>
 
 
@@ -52,9 +53,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</a>
 							</li>
 							<li class="search">
-								<form target="_blank" action="">
+								<form target="_blank" action="search/search.do" name="subform" method="get">
 									<input  type="text" name="q" id="q" placeholder="搜索" class="search-input"/>
-									<a class="search-btn" href="javascript:void(null)">
+									<a class="search-btn" href="javascript:document.subform.submit();" >
 										<i class="glyphicon glyphicon-search"></i>
 									</a>
 								</form>

@@ -26,6 +26,7 @@ import com.yidu.lly.model.Article;
 import com.yidu.lly.model.Colartic;
 import com.yidu.lly.model.Colfollow;
 import com.yidu.lly.model.Collection;
+import com.yidu.lly.model.Coltag;
 import com.yidu.lly.model.User;
 import com.yidu.lly.service.impl.ArticleServiceImpl;
 import com.yidu.lly.service.impl.ColarticServiceImpl;
@@ -122,6 +123,8 @@ public class CollectionController {
 		User user=(User) session.getAttribute("user");
 		Collection collection=this.collectionServiceImpl.showCollection(cid);
 		List<Integer> showColarticAid=this.colarticServiceImpl.showColarticAid(cid);
+		List<Coltag> coltagList=this.collectionServiceImpl.showtag(cid);
+		int coltagLen=coltagList.size();
 		List<Article> colArticle=new ArrayList<Article>();
 		List<User> colArticleUser=new ArrayList<User>();
 		if(showColarticAid.size()==0){
@@ -135,7 +138,7 @@ public class CollectionController {
 				User u=this.userServiceImpl.selectUser(colArticle.get(i).getUid());
 				colArticleUser.add(u);
 			}
-						session.setAttribute("flagcolartc", true);
+				session.setAttribute("flagcolartc", true);
 		}
 		
 		User collectionUser=this.userServiceImpl.selectUser(collection.getUid());
@@ -150,6 +153,8 @@ public class CollectionController {
 		session.setAttribute("colArticAidSize", showColarticAid.size());
 		session.setAttribute("colArticle", colArticle);
 		session.setAttribute("colArticleUser", colArticleUser);
+		session.setAttribute("coltagList", coltagList);
+		session.setAttribute("coltagLen", coltagLen);
 		return "collection/collection";
 	}
 	
@@ -229,4 +234,34 @@ public class CollectionController {
 		return map;
 	}
 	
+	public String allCollectionForUser(HttpServletRequest request,HttpSession session){
+		User user=(User) session.getAttribute("user");
+		ArrayList<Collection> uidCollection=(ArrayList<Collection>) this.collectionServiceImpl.showUserCollection(user.getUid());
+		session.setAttribute("uidCollection", uidCollection);
+		return "message/Contribute";
+	}
+	
+	@RequestMapping(value="/addcoltag.do",method=RequestMethod.POST)
+	public @ResponseBody Map<String,Object> addcoltag(HttpServletRequest request,HttpServletResponse response,HttpSession session){
+		Map<String,Object> map = new HashMap<String,Object>();
+		String tagname=request.getParameter("tagname");
+		User u=(User) session.getAttribute("user");
+		Collection c=(Collection) session.getAttribute("collection");
+		
+		Coltag coltag=new Coltag();
+		coltag.setCid(c.getCid());
+		coltag.setTagname(tagname);
+		coltag.setTaguid(u.getUid());
+		this.collectionServiceImpl.addColtag(coltag);
+		return map;
+	}
+	
+	@RequestMapping(value="/delcoltag.do",method=RequestMethod.GET)
+	public @ResponseBody Map<String,Object> delcoltag(HttpServletRequest request,HttpServletResponse response,HttpSession session){
+		Map<String,Object> map = new HashMap<String,Object>();
+		String scoltid=request.getParameter("coltid");
+		int coltid=Integer.valueOf(scoltid);
+		this.collectionServiceImpl.deltag(coltid);
+		return map;
+	}
 }

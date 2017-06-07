@@ -66,6 +66,16 @@ ul,ol{
     display: inline-block;
     margin-left: 8px;
 }
+.article .art-author .edit {
+ 	float: right;
+    margin-top: 8px;
+    padding: 0 12px;
+    font-size: 14px;
+    border: 1px solid #dcdcdc;
+    color: #9b9b9b;
+    line-height: 30px;
+    border-radius: 50px;
+ }
  .article .art-author .tag {
     padding: 1px 2px;
     font-size: 12px;
@@ -182,9 +192,14 @@ ul,ol{
     outline: none;
     display: block;
 }
+
 .comment-list {
 	padding: 20px 0 30px;
 	border-bottom: 1px solid #F0F0F0;
+}
+.comment-list .comment{
+	padding: 20px 0 30px;
+    border-bottom: 1px solid #f0f0f0;
 }
 .comment-list .avatar{
 	margin-left: 5px;
@@ -215,6 +230,11 @@ ul,ol{
 .comment-list .meta span{
 	margin-right: 6px;
 }
+.comment-list .comment-wrap .comment-delete{
+	float: right;
+    margin: 12px 0 0 10px;
+	color: #969696;
+}
 .comment-list .tool-group a {
 	margin-left: 10px;
 	font-size: 0;
@@ -230,6 +250,39 @@ ul,ol{
 	vertical-align: middle;
 	font-size: 14px;
 }
+.comment-list .sub-comment-list{
+	margin-top: 20px;
+    padding: 5px 0 5px 20px;
+    border-left: 2px solid #d9d9d9;
+}
+.comment-list .sub-comment-list .sub-comment {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #f0f0f0;
+}
+.comment-list .sub-comment-list .sub-comment p{
+	margin: 0 0 5px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+.comment-list .sub-comment-list .sub-comment .sub-tool-group{
+	font-size: 12px;
+    color: #969696;
+}
+.repcom{
+	padding: 10px 15px;
+	width: 100%;
+	height: 80px;
+	font-size: 13px;
+	border: 1px solid #DCDCDC;
+	border-radius: 4px;
+	background-color: hsla(0,0%,71%,.1);
+	resize:none;
+	display: inline-block;
+	vertical-align: top;
+	outline-style: none;
+}
+
 .include-collection{
 	min-height: 213px;
 	background-color: #f5f5f5;

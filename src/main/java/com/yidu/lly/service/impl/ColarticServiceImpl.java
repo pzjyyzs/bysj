@@ -15,23 +15,19 @@ public class ColarticServiceImpl implements ColarticService{
 	@Autowired
 	private ColarticMapper colarticMapper;
 	
-	@Override
 	public List<Integer> showColarticAid(int cid) {
 		return this.colarticMapper.showColarticAid(cid);
 	}
 	
-	@Override
 	public List<Integer> showColarticCid(int aid) {
 		// TODO Auto-generated method stub
 		return this.colarticMapper.showColarticCid(aid);
 	}
 
-	@Override
 	public void addColartic(Colartic colartic) {
 		this.colarticMapper.addColartic(colartic);
 	}
 
-	@Override
 	public void delColartic(Colartic colartic) {
 		this.colarticMapper.delColartic(colartic);	
 	}

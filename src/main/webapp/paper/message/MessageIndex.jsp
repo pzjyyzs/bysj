@@ -32,7 +32,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     width:100%;
     font-size: 17px;}
   }
-
   </style>
   <body>
   <div class="messagehead" ><jsp:include page="/paper/header.jsp"/></div>
@@ -45,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<ul>
 						<li class=""><a href="mail/showObjectUserList.do"><img src="img/xingfeng.png"><i class="iconfont ic-chats"></i> <span class="privateMail">私信</span> </a></li>
 							<li class=""><a href="paper/message/GainCom.jsp"><img src="img/pinglun.png"><i class="iconfont ic-comments"></i> <span class="myCom">评论</span> <!----></a></li>
-							<li class=""><a href="#"><img src="img/tougao.png"><i class="iconfont ic-requests"></i> <span class=""> 投稿请求</span> <!----></a></li>
+							<li class=""><a href="paper/message/Contribute.jsp"><img src="img/tougao.png"><i class="iconfont ic-requests"></i> <span class=""> 投稿请求</span> <!----></a></li>
 							<li class=""><a href="paper/message/GainLike.jsp"><img src="img/xihuan.png"><i class="iconfont ic-likes"></i> <span class="myLike"> 喜欢和赞</span> <!----></a></li>
 							<li class=""><a href="friend/showmyfans.do"><img src="img/guanzhu.png"><i class="iconfont ic-follows"></i> <span  class="myguanzhu"> 关注</span> </a></li>
 						</ul>

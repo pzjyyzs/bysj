@@ -13,7 +13,6 @@ public class LoginInterceptor implements HandlerInterceptor{
 	 /** 
      * Handler执行完成之后调用这个方法 
      */  
-	@Override
 	public void afterCompletion(HttpServletRequest arg0,
 			HttpServletResponse arg1, Object arg2, Exception arg3)
 			throws Exception {
@@ -25,14 +24,12 @@ public class LoginInterceptor implements HandlerInterceptor{
 	  /** 
      * Handler执行之后，ModelAndView返回之前调用这个方法 
      */  
-	@Override
 	public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1,
 			Object arg2, ModelAndView arg3) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
 			Object handler) throws Exception {
 		Object user=request.getSession().getAttribute("user");

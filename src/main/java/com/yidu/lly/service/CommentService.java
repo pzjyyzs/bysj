@@ -17,4 +17,6 @@ public interface CommentService {
 	public void insertComReply(ComReply comreply );
 	
 	public List<ComReply> selectReplyComent();
+	public void delComment(int comid);
+	public void delreply(int comid);
 }

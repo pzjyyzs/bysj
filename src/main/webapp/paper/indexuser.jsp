@@ -315,7 +315,6 @@ width:80px;
 						</li>
 					</c:if>
 
-
 				</c:forEach>
 			</ul>
 		</div>

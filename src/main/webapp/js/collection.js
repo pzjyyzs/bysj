@@ -24,8 +24,37 @@ $(document).ready(function(){
 		$("#tagInp").css("display","inline-block");
 	});
 	$("#tagInp").blur(function(){
-		$("#add").css("display","block");
-		$("#tagInp").css("display","none");
+		$.ajax({
+			url:"collection/addcoltag.do",
+			type:"post",
+			dataType:"json",
+			data:{
+				tagname:$("#tagInp").val()
+			},
+			success:function(data){
+				$("#add").css("display","block");
+				$("#tagInp").css("display","none");
+				location.reload();
+			}
+		});
+	});
+	$('.tag-single').hover(function(){
+		$(this).find('button').css("display",'inline-block');
+	},function(){
+		$(this).find('button').css("display",'none');
+	});
+	$('.deltag').click(function(){
+		$.ajax({
+			url:'collection/delcoltag.do',
+			type:"post",
+			dataType:"json",
+			data:{
+				coltid:$(this).attr("p")
+			},
+			success:function(data){
+				location.reload();
+			}
+		})
 		
 	});
 });

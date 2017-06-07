@@ -52,6 +52,7 @@ function addArticle(id){
 		},
 		success:function(data){
 			$("#send_success").css("display","block");
+			$(".modal-header").append("<a href='article/showArticleId.do?aid="+data.aid+"' id='update_a'>"+data.articlename+"</a>");
 		}
 	});
 }
@@ -128,7 +129,6 @@ function DeleteCotent(id){
 			}else{
 				$(".span5").css('display','none'); 
 			}
-			
 			
 		},
 	});

@@ -17,19 +17,16 @@ public class MailServiceImpl implements MailService{
 	@Autowired
 	private MailMapper MailMapper;
 
-	@Override
 	public List<Mail> selectReceiveMail(User user) {
 		// TODO Auto-generated method stub
 		return this.MailMapper.selectReceiveMail(user);
 	}
 	
-	@Override
 	public List<Mail> selectSendMail(User user) {
 		// TODO Auto-generated method stub
 		return this.MailMapper.selectSendMail(user);
 	}
 
-	@Override
 	public List<Mail> selecteMail(User MyUser, User OtherUser) {
 		// TODO Auto-generated method stub
 		
@@ -42,14 +39,12 @@ public class MailServiceImpl implements MailService{
 		return this.MailMapper.selecteMail(params);
 	}
 
-	@Override
 	public void delMail(Mail mail) {
 		// TODO Auto-generated method stub
 		this.MailMapper.delMail(mail);
 		
 	}
 
-	@Override
 	public void insertMail(Mail mail) {
 		// TODO Auto-generated method stub
 		this.MailMapper.insertMail(mail);

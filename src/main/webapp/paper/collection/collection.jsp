@@ -48,14 +48,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</c:if>
 						</a>
 										
-						<div class="btn btn-hollow js-contribute-button">
-							投稿
-						</div>
 						<div class="title">
 							<a class="name" href="javascript:void(null)">${sessionScope.collection.collectionname }</a>
 						</div>
 						<div class="info">
-							收录了${sessionScope.colArticAidSize }篇文章 · xxx人收藏 
+							收录了${sessionScope.colArticAidSize }篇文章 
 						</div>
 					</div>
 					<ul class="trigger-menu">
@@ -189,8 +186,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 					<div class="tab">
 						<p>标签</p>
+						<c:set var="tagflag" value="0" />
+						<c:if test=${sessionScope.collection.uid == sessionScope.user.uid }>
+							<c:set var="tagflag" value="1"/>
+						</c:if>
+						<c:forEach items="${sessionScope.coltagList }" var="tag">
+							<span class="tag-single">
+								<c:if test="${tagflag==1 }">
+									<button class="deltag" p="${tag.coltid }">x</button>
+								</c:if>
+								${tag.tagname }
+							</span>
+						</c:forEach>
+						<c:if test="${sessionScope.coltagLen<3 }">
 						<a href="javascript:void(0)" class="add" id="add">+添加</a>
 						<input placeholder="请输入标签" class="tagInp" id="tagInp">
+						</c:if>
 					</div>
 					<div class="user-action">
 						<c:if test="${sessionScope.collection.uid == sessionScope.user.uid }">

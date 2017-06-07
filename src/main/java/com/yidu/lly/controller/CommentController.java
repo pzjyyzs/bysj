@@ -53,6 +53,17 @@ public class CommentController {
 		
 		return map;
 	}
+	
+	@RequestMapping(value="/delcomment.do",method = RequestMethod.POST)
+	public @ResponseBody Map<String,Object> delcomment(HttpServletRequest request,HttpSession session){
+		Map<String,Object> map = new HashMap<String,Object>();
+		String comids=request.getParameter("comid");
+		int comid=Integer.parseInt(comids);
+		this.commentService.delComment(comid);
+		this.commentService.delreply(comid);
+		return map;
+	}
+	
 	//回复评论
 
 	@RequestMapping(value="/replycomment.do",method = RequestMethod.POST)
@@ -75,7 +86,7 @@ public class CommentController {
 		  return "redirect:/article/showArticleId.do?aid="+articleid+"";
 		
 	}
-
+	
 	
 
 }

@@ -62,7 +62,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 						<!-- 如果是当前作者，加入编辑按钮 -->
 					</div>
-				</div>
+						<c:if test="${sessionScope.article.uid == sessionScope.user.uid }">
+						<a href="article/updateArticle.do" target="_blank" class="edit">编辑文章</a>
+						</c:if>
+					</div>
 				<input type="hidden" value="${sessionScope.article.articlecontent }" id="wznr"/>
 				<div class="art-content" id="art-content"></div>
 			</div>
@@ -103,7 +106,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<%
 				String myreplycomform="myreplycomform"+markid;
 				 %>
-					<div>
+					<div class="comment">
 						<div class="author">
 							<a target="_blank" class="avatar">
 								<img src="">
@@ -126,16 +129,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 						<div class="comment-wrap">
 							<p>${comment.comtext }</p>
-							
-							
+							<c:if test="${sessionScope.user.uid == comment.comuserid || sessionScope.article.uid == sessionScope.user.uid}">
+							<a class="comment-delete" p="${comment.comid }">
+								<span>删除</span>
+							</a>
+							</c:if>
 							<c:forEach items="${sessionScope.comreplylist}" var="comreply">
 							
 							
 								<c:if test="${comreply.comid == comment.comid }">
-								     ${comreply.replyuname}<br/>
-									${comreply.replycotent}<br/>
-									${comreply.replytime}<br/>
-								   
+								<div class="sub-comment-list">
+									<div class="sub-comment">
+										<p>${comreply.replyuname}</p>
+										<span>${comreply.replycotent}</span>
+										<div class="sub-tool-group">
+											<span>${comreply.replytime}</span>
+										</div>
+									</div>
+								</div>
 								
 							</c:if>
 							</c:forEach>
@@ -155,9 +166,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									 <input name="useruid" type="hidden" value="${user.uid}">
 									  <input name="articleid" type="hidden" value="${sessionScope.article.aid}">
 				
-                               <textarea  name='replycomment' cols="30" rows="4" > </textarea>      
-                
-                                <input type="submit" />
+                               <textarea  placeholder="写下你的评论" name='replycomment' cols="30" rows="4" class="repcom"></textarea>      
+                                <input type="submit" class="btn btn-send"/>
 
                                </form>
 								<% markid++; %>
@@ -165,6 +175,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</div>
 					</div>
+				 	
 				 </c:forEach>
 				</div>
 			</div>

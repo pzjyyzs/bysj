@@ -25,8 +25,13 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
 		<attributes>
-			<attribute name="owner.project.facets" value="java"/>
+			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/weijy/Desktop/IKAnalyzer2012FF_u1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/weijy/Desktop/lucene-analyzers-common-4.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/weijy/Desktop/lucene-core-4.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/weijy/Desktop/lucene-highlighter-4.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/weijy/Desktop/lucene-queryparser-4.6.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

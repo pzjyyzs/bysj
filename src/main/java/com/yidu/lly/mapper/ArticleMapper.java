@@ -22,4 +22,9 @@ public interface ArticleMapper {
 	public void deletesaveArticle(int id);
 	
 	public List<SaveArticle> selectMysaveArticle(int uid);
+	public List<Article> selectAllArticle();
+	
+	public void delArticle(int aid);
+	public void updArticle(Article article);
+	public int selArticle(String articlename,String articlecontent,String articletime);
 }

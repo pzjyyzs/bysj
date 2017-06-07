@@ -16,19 +16,16 @@ public class RemindServiceImpl implements RemindService {
 	@Autowired
 	private RemindMapper RemindMapper;
 
-	@Override
 	public Remind selectMailRemind(int remindid) {
 		// TODO Auto-generated method stub
 		return this.RemindMapper.selectMailRemind(remindid);
 	}
 
-	@Override
 	public List<Remind> selectAllMailRemind(int remindid) {
 		// TODO Auto-generated method stub
 		return this.RemindMapper.selectAllMailRemind(remindid);
 	}
 
-	@Override
 	public Remind selectTopMailRemind(int remindid, int objectremind) {
 		
 		HashMap<String,Object> params = new HashMap<String,Object>();
@@ -40,7 +37,6 @@ public class RemindServiceImpl implements RemindService {
 		return this.RemindMapper.selectTopMailRemind(params);
 	}
 
-	@Override
 	public void updateMailRemind(int useruid, int otheruid) {
 		// TODO Auto-generated method stub
 		
@@ -52,7 +48,6 @@ public class RemindServiceImpl implements RemindService {
 		this.RemindMapper.updateMailRemind(params);
 	}
 
-	@Override
 	public List<Remind> selectGuanZhuRemind(int remindid) {
 		// TODO Auto-generated method stub
 		
@@ -60,7 +55,6 @@ public class RemindServiceImpl implements RemindService {
 		return this.RemindMapper.selectGuanZhuRemind(remindid);
 	}
 
-	@Override
 	public void updateGuanzhuRemind(int myguanzhuId, int otherguanzhuId) {
 		// TODO Auto-generated method stub
 		 HashMap<String,Object> params = new HashMap<String,Object>();
@@ -72,13 +66,11 @@ public class RemindServiceImpl implements RemindService {
 		
 	}
 
-	@Override
 	public List<Remind> selectLikeRemind() {
 		// TODO Auto-generated method stub
 		return RemindMapper.selectLikeRemind();
 	}
 
-	@Override
 	public List<Remind> selectComRemind() {
 		// TODO Auto-generated method stub
 		return RemindMapper.selectComRemind();

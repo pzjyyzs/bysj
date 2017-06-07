@@ -6,6 +6,19 @@ $(document).ready(function() {
 		$("#btn-send-com").click(function() {
 			addcomment();
 		});
+		$(".comment-delete").click(function(e){
+			$.ajax({
+				url:"comment/delcomment.do",
+				type:"post",
+				dataType:"json",
+				data:{
+					comid:$(this).attr('p')
+				},
+				success:function(){
+					location.reload();
+				}
+			})
+		});
 		$(".push").click(function(e){
 			var that=this;
 			$.ajax({
@@ -41,6 +54,9 @@ $(document).ready(function() {
 			});
 					
 		});
+		$("#qvxiao").click(function(){
+			
+		})
 });
 
 function addcomment() {
