@@ -28,10 +28,10 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/weijy/Desktop/IKAnalyzer2012FF_u1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/weijy/Desktop/lucene-analyzers-common-4.6.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/weijy/Desktop/lucene-core-4.6.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/weijy/Desktop/lucene-highlighter-4.6.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/weijy/Desktop/lucene-queryparser-4.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/祝融陈/Desktop/lucene-queryparser-4.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/祝融陈/Desktop/lucene-highlighter-4.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/祝融陈/Desktop/lucene-core-4.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/祝融陈/Desktop/lucene-analyzers-common-4.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/祝融陈/Desktop/IKAnalyzer2012FF_u1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
